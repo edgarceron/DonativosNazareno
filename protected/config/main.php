@@ -66,6 +66,15 @@ return array(
 			'desplegable' => false,
 			'version'=>0,
 		),
+		
+		'eventos'=>array
+		(
+			'nombre'=>'Eventos',
+			'modulo'=>'1-4',
+			'padre'=>'maestros',
+			'desplegable' => true,
+			'version'=>1,
+		),
 	),
 
 	// application components
@@ -92,11 +101,20 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=sofintcorporativa',
+			'connectionString' => 'mysql:host=localhost;dbname=sofintnazareno',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',
 			'charset' => 'utf8',
+		),
+		
+		'donativos'=>array(
+			'connectionString' => 'mysql:host=localhost;dbname=donativos',
+			'emulatePrepare' => true,
+			'username' => 'root',
+			'password' => '',
+			'charset' => 'utf8',
+			'class' => 'CDbConnection',
 		),
 	
 		'errorHandler'=>array(

@@ -1,4 +1,4 @@
-<?php echo "<?php\n"; ?>
+<?php
 
 class DefaultController extends Controller
 {
@@ -74,12 +74,11 @@ class DefaultController extends Controller
         
     public function allowIndex()
 	{
-		/*
 		$accion = 'index'; //Cambiar esto cada ves que lo copie para una accion diferente
 		if(Yii::app()->user->name != "Guest"){
 			$usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
 			$criteria = new CDbCriteria();            
-			$modulo = '<?php echo $this->moduleID; ?>';
+			$modulo = 'eventos';
 			$criteria->compare('perfil', $usuario->perfil);
 			$criteria->compare('modulo', $modulo);
 			$criteria->compare('accion', $accion);
@@ -105,8 +104,6 @@ class DefaultController extends Controller
 		{
 			return false;
 		}
-		*/
-		return true;
 	}
 	
 }
