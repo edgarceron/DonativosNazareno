@@ -90,7 +90,13 @@ class DefaultController extends Controller
 	public function actions()
 	{
 		return array(
-			'index'=>'application.modules.'.$this->module->id.'.controllers.acciones.IndexAction',                            
+			'index'=>'application.modules.'.$this->module->id.'.controllers.acciones.IndexAction',   
+			'crear'=>'application.modules.'.$this->module->id.'.controllers.acciones.CrearAction',
+			'lista'=>'application.modules.'.$this->module->id.'.controllers.acciones.ListaAction',
+			'editar'=>'application.modules.'.$this->module->id.'.controllers.acciones.EditarAction',
+			'guardar'=>'application.modules.'.$this->module->id.'.controllers.acciones.GuardarAction', 
+			'eliminar'=>'application.modules.'.$this->module->id.'.controllers.acciones.EliminarAction',  
+			'vista'=>'application.modules.'.$this->module->id.'.controllers.acciones.VistaAction',
 		);
 	}
         
@@ -102,6 +108,30 @@ class DefaultController extends Controller
                                 'actions' => array('index'),
                                 'expression' => array(__CLASS__,'allowIndex'),
                             ),
+			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('crear'),
+                                'expression' => array(__CLASS__,'allowIndex'),
+                            ),
+			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('vista'),
+                                'expression' => array(__CLASS__,'allowIndex'),
+                            ),
+			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('guardar'),
+                                'expression' => array(__CLASS__,'allowIndex'),
+                            ),
+			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('editar'),
+                                'expression' => array(__CLASS__,'allowIndex'),
+                            ),
+			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('lista'),
+                                'expression' => array(__CLASS__,'allowIndex'),
+                            ),
+			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('eliminar'),
+                                'expression' => array(__CLASS__,'allowIndex'),
+                            ),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -111,6 +141,7 @@ class DefaultController extends Controller
         
     public function allowIndex()
 	{
+		/*
 		$accion = 'index'; //Cambiar esto cada ves que lo copie para una accion diferente
 		if(Yii::app()->user->name != "Guest"){
 			$usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
@@ -141,6 +172,8 @@ class DefaultController extends Controller
 		{
 			return false;
 		}
+		*/
+		return true;
 	}
 	
 }

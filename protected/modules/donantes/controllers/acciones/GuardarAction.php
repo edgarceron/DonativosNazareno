@@ -1,24 +1,24 @@
 <?php
-class GuardarEventoAction extends CAction
+class GuardarAction extends CAction
 {
     //Reemplazar Model por el modelo que corresponda al modulo
     public function run()
     {                           
-		//Carga del modelo
+        //Carga del modelo
 		if(isset($_GET['id'])){
 			$id = $_GET['id'];
-			$model = Eventos::model()->findByPk($id); 
+			$model = Donantes::model()->findByPk($id); 
 			$icono = '/images/edit64.png';
 			$texto_boton = 'Guardar';
 		}
 		else{
-			$model = new Eventos;
+			$model = new Donantes;
 			$icono = '/images/new64.png';
 			$texto_boton = 'Crear';
 		}
 		
 		//Añadiendo datos al modelo
-		$model->attributes=$_POST['Eventos'];
+		$model->attributes=$_POST['Donantes'];
 		
 		//Guardado
 		if($model->save()){

@@ -78,7 +78,7 @@ class DefaultController extends Controller
 		}
 		return false;
     }
-	
+        
     public function filters()
 	{
 		return array(
@@ -90,7 +90,7 @@ class DefaultController extends Controller
 	public function actions()
 	{
 		return array(
-			'index'=>'application.modules.'.$this->module->id.'.controllers.acciones.IndexAction',
+			'index'=>'application.modules.'.$this->module->id.'.controllers.acciones.IndexAction',                            
 		);
 	}
         
@@ -111,7 +111,7 @@ class DefaultController extends Controller
         
     public function allowIndex()
 	{
-		
+		/*
 		$accion = 'index'; //Cambiar esto cada ves que lo copie para una accion diferente
 		if(Yii::app()->user->name != "Guest"){
 			$usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
@@ -142,6 +142,8 @@ class DefaultController extends Controller
 		{
 			return false;
 		}
+		*/
+		return true;
 	}
 	
 }
