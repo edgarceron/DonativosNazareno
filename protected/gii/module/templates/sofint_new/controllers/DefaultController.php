@@ -36,11 +36,48 @@ class DefaultController extends Controller
 				$validacion->ruta = $valor;
 				$validacion->save();
 			}                    
-			
+			DefaultController::crearPermisos($modulo, $clave);
 		}
-		
 		return true;
 	}
+	
+	public static function crearPermisos($modulo, $accion){
+		if(!DefaultController::existePermiso($modulo, $accion)){
+			$perfil = 1;
+			$estado = 1;
+			$model = new PerfilContenido;
+			$model->modulo = $modulo;
+			$model->controlador = $modulo;
+			$model->accion = $accion;
+			$model->estado = $estado;
+			$model->perfil = $perfil;
+			$model->fecha_creacion = time();	
+			if($model->save()){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		else{
+			return true;
+		}	
+	}
+
+	public static function existePermiso($modulo, $accion){
+		$perfil = 1;
+		$estado = 1;
+		$criteria = new CDbCriteria();            
+		$criteria->compare('perfil', $perfil);
+		$criteria->compare('estado', $estado);
+		$criteria->compare('modulo', $modulo);
+		$criteria->compare('accion', $accion);
+		$permisos = PerfilContenido::model()->find($criteria);
+		if(count($permisos) == 1){
+			return true;
+		}
+		return false;
+    }
         
     public function filters()
 	{

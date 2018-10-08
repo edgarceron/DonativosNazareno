@@ -75,6 +75,24 @@ return array(
 			'desplegable' => true,
 			'version'=>1,
 		),
+		
+		'donantes'=>array
+		(
+			'nombre'=>'Donantes',
+			'modulo'=>'1-5',
+			'padre'=>'maestros',
+			'desplegable' => true,
+			'version'=>1,
+		),
+		
+		'donaciones'=>array
+		(
+			'nombre'=>'Donaciones',
+			'modulo'=>'1-6',
+			'padre'=>'maestros',
+			'desplegable' => true,
+			'version'=>1,
+		),
 	),
 
 	// application components

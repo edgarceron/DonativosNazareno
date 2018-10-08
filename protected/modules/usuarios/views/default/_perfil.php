@@ -6,7 +6,7 @@
 $infomodulos = Modulos::model()->findAll();
 ?>
 
-<div class="row">
+
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'user-permisos',
@@ -20,7 +20,7 @@ $infomodulos = Modulos::model()->findAll();
     <br/>
 	<?php echo $form->errorSummary($perfil); ?>
 
-    <div class="col-lg-2">
+    <div class="col-lg-6">
 	<div class="form-group">
 		<?php echo $form->labelEx($perfil,'nombre',array('class'=>'label label-success')); ?>
 		<?php echo $form->textField($perfil,'nombre',array('class'=>'form-control')); ?>
@@ -28,7 +28,7 @@ $infomodulos = Modulos::model()->findAll();
 	</div>
     </div>
    
-    <div class="col-lg-2">
+    <div class="col-lg-6">
 	<div class="form-group">
 		<?php echo $form->labelEx($perfil,'descripcion',array('class'=>'label label-success')); ?>
 		<?php echo $form->textArea($perfil,'descripcion',array('class'=>'form-control')); ?>
@@ -39,7 +39,7 @@ $infomodulos = Modulos::model()->findAll();
     
     
 
-</div><!-- form -->
+<!-- form -->
 </div>
 <div class="col-lg-12">
     <table class="table table-hover">
@@ -53,16 +53,16 @@ $infomodulos = Modulos::model()->findAll();
         <?php if($perfil->isNewRecord){ ?>        
         <tbody>   
             <?php foreach ($infomodulos as $infomodulo) { ?>
-            <tr class="bg-success">
+            <tr class="bg-primary">
                 <th><?php echo $infomodulo->nombre ?></th>
-                <td><div class="col-lg-4"><?php echo CHtml::checkBox('Permisos['.$infomodulo->nombre.'-'.$infomodulo->nombre.']',"",array('data'=>$infomodulo->nombre)) ?><span class="glyphicon glyphicon-refresh"></span></div></td>
+                <td><div class="col-lg-6"><?php echo CHtml::checkBox('Permisos['.$infomodulo->nombre.'-'.$infomodulo->nombre.']',"",array('data'=>$infomodulo->nombre)) ?><span class="glyphicon glyphicon-refresh"></span></div></td>
             </tr> 
                 <?php 
                     $infoacciones = Acciones::model()->findAll('modulo = "'.$infomodulo->nombre.'"');
                 foreach($infoacciones as $infoaccion){ ?>
-                <tr class="bg-warning">
+                <tr class="alert-info">
                     <td><?php echo $infoaccion->accion ?></td>
-                    <td><div class="col-lg-4"><?php echo CHtml::checkBox('Permisos['.$infomodulo->nombre.'-'.$infoaccion->accion.']',"",array('data'=>$infoaccion->accion)) ?><span class="glyphicon glyphicon-refresh"></span></div></td>
+                    <td><div class="col-lg-6"><?php echo CHtml::checkBox('Permisos['.$infomodulo->nombre.'-'.$infoaccion->accion.']',"",array('data'=>$infoaccion->accion)) ?><span class="glyphicon glyphicon-refresh"></span></div></td>
                 </tr>
                 <?php } ?>
             <?php } ?>            
@@ -80,7 +80,7 @@ $infomodulos = Modulos::model()->findAll();
             ?>
             <tr class="bg-success">
                 <th><?php echo $infomodulo->nombre ?></th>
-                <td><div class="col-lg-4"><?php echo CHtml::checkBox('Permisos['.$infomodulo->nombre.'-'.$infomodulo->nombre.']',$checked,array('data'=>$infomodulo->nombre)) ?><span class="glyphicon glyphicon-refresh"></span></div></td>
+                <td><div class="col-lg-6"><?php echo CHtml::checkBox('Permisos['.$infomodulo->nombre.'-'.$infomodulo->nombre.']',$checked,array('data'=>$infomodulo->nombre)) ?><span class="glyphicon glyphicon-refresh"></span></div></td>
             </tr> 
                 <?php 
                     $infoacciones = Acciones::model()->findAll('modulo = "'.$infomodulo->nombre.'"');
@@ -96,7 +96,7 @@ $infomodulos = Modulos::model()->findAll();
                 ?>
                 <tr class="bg-warning">
                     <td><?php echo $infoaccion->accion ?></td>
-                    <td><div class="col-lg-4"><?php echo CHtml::checkBox('Permisos['.$infomodulo->nombre.'-'.$infoaccion->accion.']',$checked) ?><span class="glyphicon glyphicon-refresh"></span></div></td>
+                    <td><div class="col-lg-6"><?php echo CHtml::checkBox('Permisos['.$infomodulo->nombre.'-'.$infoaccion->accion.']',$checked) ?><span class="glyphicon glyphicon-refresh"></span></div></td>
                 </tr>
                 <?php } ?>
             <?php } ?>            

@@ -7,8 +7,8 @@ $this->breadcrumbs=array(
 );
 ?>
     <ul class="nav nav-tabs" role="tablist">        
-        <li role="presentation" class="active"><a href="#actualizar" aria-controls="actualizar" role="tab" data-toggle="tab" class="btn-info"><span class="glyphicon glyphicon-refresh"></span> Actualizar</a></li>
-        <li role="presentation"><a href="#historico" aria-controls="historico" role="tab" data-toggle="tab" class="btn-primary"><span class="glyphicon glyphicon-book"></span> Historial</a></li>        
+        <li class="nav-item active"><a href="#actualizar" aria-controls="actualizar" role="tab" data-toggle="tab" class="nav-link active"><span class="glyphicon glyphicon-refresh"></span> Actualizar</a></li>
+        <li class="nav-item"><a href="#historico" aria-controls="historico" role="tab" data-toggle="tab" class="nav-link"><span class="glyphicon glyphicon-book"></span> Historial</a></li>        
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">              

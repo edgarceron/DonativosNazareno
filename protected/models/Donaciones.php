@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table 'donaciones':
  * @property integer $id
+ * @property integer $id_evento
  * @property integer $id_donante_donacion
  * @property integer $id_representante_donacion
  * @property string $valor_donacion
@@ -13,6 +14,7 @@
  * The followings are the available model relations:
  * @property Donantes $idDonanteDonacion
  * @property Donantes $idRepresentanteDonacion
+ * @property Eventos $idEvento
  */
 class Donaciones extends CActiveRecord
 {
@@ -32,12 +34,12 @@ class Donaciones extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_donante_donacion, valor_donacion, validez_donacion', 'required'),
-			array('id_donante_donacion, id_representante_donacion, validez_donacion', 'numerical', 'integerOnly'=>true),
+			array('id_evento, id_donante_donacion, valor_donacion, validez_donacion', 'required'),
+			array('id_evento, id_donante_donacion, id_representante_donacion, validez_donacion', 'numerical', 'integerOnly'=>true),
 			array('valor_donacion', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_donante_donacion, id_representante_donacion, valor_donacion, validez_donacion', 'safe', 'on'=>'search'),
+			array('id, id_evento, id_donante_donacion, id_representante_donacion, valor_donacion, validez_donacion', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,6 +53,7 @@ class Donaciones extends CActiveRecord
 		return array(
 			'idDonanteDonacion' => array(self::BELONGS_TO, 'Donantes', 'id_donante_donacion'),
 			'idRepresentanteDonacion' => array(self::BELONGS_TO, 'Donantes', 'id_representante_donacion'),
+			'idEvento' => array(self::BELONGS_TO, 'Eventos', 'id_evento'),
 		);
 	}
 
@@ -61,6 +64,7 @@ class Donaciones extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'id_evento' => 'Id Evento',
 			'id_donante_donacion' => 'Id Donante Donacion',
 			'id_representante_donacion' => 'Id Representante Donacion',
 			'valor_donacion' => 'Valor Donacion',
@@ -87,6 +91,7 @@ class Donaciones extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('id_evento',$this->id_evento);
 		$criteria->compare('id_donante_donacion',$this->id_donante_donacion);
 		$criteria->compare('id_representante_donacion',$this->id_representante_donacion);
 		$criteria->compare('valor_donacion',$this->valor_donacion,true);

@@ -18,7 +18,7 @@
     <br/>
 	<?php echo $form->errorSummary($grupo); ?>
 
-    <div class="col-lg-2">
+    <div class="col-lg-6">
 		<div class="form-group">
 			<?php echo $form->labelEx($grupo,'nombre',array('class'=>'label label-success')); ?>
 			<?php echo $form->textField($grupo,'nombre',array('class'=>'form-control')); ?>

@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 ?>
 <div>
 
-  <!-- Nav tabs -->
+  <!-- Nav tabs 
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-home"></span> Home</a></li>
     <li role="presentation"><a href="#nuevo" aria-controls="nuevo" role="tab" data-toggle="tab" class="btn-success"><span class="glyphicon glyphicon-plus"></span> Nuevo Usuario</a></li>    
@@ -16,18 +16,26 @@ $this->breadcrumbs=array(
 	<li role="presentation"><a href="#nuevo-grupo" aria-controls="nuevo-grupo" role="tab" data-toggle="tab" class="btn-danger"><span class="glyphicon glyphicon-plus"></span> Nuevo Grupo</a></li>
 	<li role="presentation"><a href="#nuevo-rol" aria-controls="nuevo-rol" role="tab" data-toggle="tab" class="btn-warning"><span class="glyphicon glyphicon-plus"></span> Nuevo Rol</a></li>
   </ul>
-
+	-->
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="nav-item"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" class="nav-link active btn-primary"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+		<li class="nav-item"><a href="#nuevo" aria-controls="nuevo" role="tab" data-toggle="tab" class="nav-link btn-primary"><span class="glyphicon glyphicon-plus"></span> Nuevo Usuario</a></li>    
+		<li class="nav-item"><a href="#nuevo-perfil" aria-controls="nuevo-perfil" role="tab" data-toggle="tab" class="nav-link btn-primary"><span class="glyphicon glyphicon-plus"></span> Nuevo Perfil</a></li>    
+		<li class="nav-item"><a href="#nuevo-grupo" aria-controls="nuevo-grupo" role="tab" data-toggle="tab" class="nav-link btn-primary"><span class="glyphicon glyphicon-plus"></span> Nuevo Grupo</a></li>
+		<li class="nav-item"><a href="#nuevo-rol" aria-controls="nuevo-rol" role="tab" data-toggle="tab" class="nav-link btn-primary"><span class="glyphicon glyphicon-plus"></span> Nuevo Rol</a></li>
+	</ul>
+	
   <!-- Tab panes -->
   <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="home">
           <br/>
           <div class="tabbable" id="tabs-40080">
                 <ul class="nav nav-pills">
-                        <li class="active">
-                                <a href="#panel-640942" data-toggle="tab">Usuarios</a>
+                        <li class="nav-item">
+                                <a class="nav-link active" href="#panel-640942" data-toggle="tab">Usuarios</a>
                         </li>
-                        <li>
-                                <a href="#panel-438434" data-toggle="tab">Perfiles</a>
+                        <li class="nav-item">
+                                <a class="nav-link" href="#panel-438434" data-toggle="tab">Perfiles</a>
                         </li>
                 </ul>
                 <div class="tab-content">
@@ -44,8 +52,8 @@ $this->breadcrumbs=array(
                                         <tr>
                                             <td><?php echo $usuario->nick ?></td>                    
                                             <td class="text-right">                        
-                                                <a href="<?php echo Yii::app()->createUrl('/usuarios/default/view',array('id'=>$usuario->id)) ?>" class="btn btn-warning"><span class="glyphicon glyphicon-search"></span></a> 
-                                                <a href="<?php echo Yii::app()->createUrl('/usuarios/default/borrar',array('id'=>$usuario->id)) ?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                                                <a href="<?php echo Yii::app()->createUrl('/usuarios/default/view',array('id'=>$usuario->id)) ?>" class="btn btn-warning"><img src="<?php echo Yii::app()->request->baseUrl.'/images/view.png' ?>"/></a> 
+                                                <a href="<?php echo Yii::app()->createUrl('/usuarios/default/borrar',array('id'=>$usuario->id)) ?>" class="btn btn-danger"><img src="<?php echo Yii::app()->request->baseUrl.'/images/delete.png' ?>"/></a>
                                             </td>
                                         </tr>
                                         <?php } ?>

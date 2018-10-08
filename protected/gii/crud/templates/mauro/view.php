@@ -7,33 +7,47 @@
 <?php echo "<?php\n"; ?>
 /* @var $this <?php echo $this->getControllerClass(); ?> */
 /* @var $model <?php echo $this->getModelClass(); ?> */
+<?php echo "?>\n"; ?>
 
 <?php
-$nameColumn=$this->guessNameColumn($this->tableSchema->columns);
-$label=$this->pluralize($this->class2name($this->modelClass));
-echo "\$this->breadcrumbs=array(
-	'$label'=>array('index'),
-	\$model->{$nameColumn},
-);\n";
-?>
+	function tabs($string, $tabs){
+		$aux = "";
+		for($i = 0; $i < $tabs; $i++){
+			$aux = $aux . "\t";
+		}
+		return $aux.$string;
+	}
+	
+	echo "\t<div class=\"col-sm-12\">\n";
+	echo "\t\t<div class=\"card\">\n";
+	echo "\t\t\t<div class=\"card-header\">\n";
+	echo "\t\t\t\t<img alt=\"Bootstrap Image Preview\" src=\"<?php echo Yii::app()->request->baseUrl.'/images/view64.png' ?>\"/>\n";
+	echo "\t\t\t</div>\n";
+	echo "\t\t\t<div class=\"card-body\">\n";
+	
+	$tabs = 4;
+	echo tabs("<table class=\"table\">\n", $tabs);
+	
+	foreach($this->tableSchema->columns as $column)
+	{
+		if($column->name == 'id')
+			continue;
+		echo tabs("<tr>\n", ++$tabs);
+		echo tabs("<th scope=\"row\"><?php echo \$data->getAttributeLabel('{$column->name}') ?></th>\n", ++$tabs);
+		echo tabs("<td><?php echo \$data->{$column->name} ?></th>\n", $tabs);
+		echo tabs("</tr>\n", --$tabs);
+		--$tabs;
+	}	
+	
+	echo tabs("</table>\n", $tabs);
+	echo tabs("<?php echo CHtml::button('Editar', array('onclick' => 'js:document.location.href=\"'. Yii::app()->request->baseUrl . '/index.php/{$this->controller}/default/editar/id/' . \$data->id .'\"', 'class' => 'btn btn-primary')); ?>\n", $tabs);
+	echo tabs("<?php echo CHtml::button('Eliminar', array('onclick' => 'js:document.location.href=\"'. Yii::app()->request->baseUrl . '/index.php/{$this->controller}/default/eliminar/id/' . \$data->id .'\"', 'class' => 'btn btn-primary')); ?>\n", $tabs);
+	echo tabs("<?php echo CHtml::button('Lista de {$this->controller}', array('onclick' => 'js:document.location.href=\"'. Yii::app()->request->baseUrl . '/index.php/{$this->controller}/default/lista\"', 'class' => 'btn btn-primary')); ?>\n", $tabs);
+	
+	echo "\t\t\t</div>\n";
+	echo "\t\t</div>\n";
+	echo "\t</div>\n";
+	
+	//echo print_r($this, true);
 
-$this->menu=array(
-	array('label'=>'List <?php echo $this->modelClass; ?>', 'url'=>array('index')),
-	array('label'=>'Create <?php echo $this->modelClass; ?>', 'url'=>array('create')),
-	array('label'=>'Update <?php echo $this->modelClass; ?>', 'url'=>array('update', 'id'=>$model-><?php echo $this->tableSchema->primaryKey; ?>)),
-	array('label'=>'Delete <?php echo $this->modelClass; ?>', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model-><?php echo $this->tableSchema->primaryKey; ?>),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage <?php echo $this->modelClass; ?>', 'url'=>array('admin')),
-);
 ?>
-
-<h1>View <?php echo $this->modelClass." #<?php echo \$model->{$this->tableSchema->primaryKey}; ?>"; ?></h1>
-
-<?php echo "<?php"; ?> $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-<?php
-foreach($this->tableSchema->columns as $column)
-	echo "\t\t'".$column->name."',\n";
-?>
-	),
-)); ?>
