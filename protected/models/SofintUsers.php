@@ -17,11 +17,8 @@
  * @property integer $perfil
  * @property integer $estado
  * @property integer $fecha_creacion
- * @property integer $dat1
- * @property string $dat2
- * @property string $dat3
- * @property string $dat4
- * @property string $dat5
+ * @property integer $restablecer
+ * @property integer $grupo
  */
 class SofintUsers extends CActiveRecord
 {
@@ -41,17 +38,17 @@ class SofintUsers extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nick, password, perfil, estado, fecha_creacion', 'required'),
-			array('telefono, perfil, estado, fecha_creacion, dat1', 'numerical', 'integerOnly'=>true),
+			array('nick, password, nombre, apellido, email, perfil, estado, fecha_creacion', 'required'),
+			array('telefono, perfil, estado, fecha_creacion, restablecer, grupo', 'numerical', 'integerOnly'=>true),
 			array('nick', 'length', 'max'=>10),
-			array('password, foto, dat2, dat4', 'length', 'max'=>50),
+			array('password, foto', 'length', 'max'=>50),
 			array('nombre, apellido', 'length', 'max'=>20),
 			array('movil', 'length', 'max'=>11),
-			array('email', 'email'),
-			array('dat3', 'length', 'max'=>100),
+			array('email', 'length', 'max'=>40),
+			array('direccion', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, nick, password, nombre, apellido, telefono, movil, email, foto, direccion, perfil, estado, fecha_creacion, dat1, dat2, dat3, dat4, dat5', 'safe', 'on'=>'search'),
+			array('id, nick, password, nombre, apellido, telefono, movil, email, foto, direccion, perfil, estado, fecha_creacion, restablecer, grupo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -85,11 +82,8 @@ class SofintUsers extends CActiveRecord
 			'perfil' => 'Perfil',
 			'estado' => 'Estado',
 			'fecha_creacion' => 'Fecha Creacion',
-			'dat1' => 'Grupo',
-			'dat2' => 'dat2',
-			'dat3' => 'Whatsapp',
-			'dat4' => 'Dat4',
-			'dat5' => 'Dat5',
+			'restablecer' => 'Restablecer',
+			'grupo' => 'Grupo',
 		);
 	}
 
@@ -124,26 +118,24 @@ class SofintUsers extends CActiveRecord
 		$criteria->compare('perfil',$this->perfil);
 		$criteria->compare('estado',$this->estado);
 		$criteria->compare('fecha_creacion',$this->fecha_creacion);
-		$criteria->compare('dat1',$this->dat1);
-		$criteria->compare('dat2',$this->dat2,true);
-		$criteria->compare('dat3',$this->dat3,true);
-		$criteria->compare('dat4',$this->dat4,true);
-		$criteria->compare('dat5',$this->dat5,true);
+		$criteria->compare('restablecer',$this->restablecer);
+		$criteria->compare('grupo',$this->grupo);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
-
-        
+	
 	public function validatePassword($password)
 	{
 		return $this->hashPassword($password)===$this->password;
 	}
+	
 	public function hashPassword($password)
 	{
 		return md5($password);
-	}        
+	}    
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!

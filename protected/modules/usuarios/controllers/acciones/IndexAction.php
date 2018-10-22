@@ -3,16 +3,16 @@ class IndexAction extends CAction
 {
     public function run()
     {
-        $usuarios = Usuarios::getUsuarios();  
+		
         $model = new Usuarios;
         $perfil = new Perfil;
 		$grupo = new Grupo;
-        $perfiles = Perfil::model()->findAll();
-		$grupos = Grupo::model()->findAll();
-
-        if(isset($_POST['Usuarios']))
+		
+		
+		if(isset($_POST['Usuarios']))
         {
             $model->setAttributes($_POST['Usuarios']);
+			$password = $model->password;
             $model->password = md5($_POST['Usuarios']['password']);
             $model->fecha_creacion = time();
             if($model->save())
@@ -22,9 +22,14 @@ class IndexAction extends CAction
             else
             {
                 Yii::app()->user->setFlash('warning', "Informacion Incompleta, verifique nuevamente!");
+				$model->password = $password;
             }
-        }               
-
+        } 
+		
+		$usuarios = Usuarios::getUsuarios();  
+		$perfiles = Perfil::model()->findAll();
+		$grupos = Grupo::model()->findAll();
+		
         $this->controller->render('index',array
             (
                 'usuarios'=>$usuarios,

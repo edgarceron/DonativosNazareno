@@ -21,8 +21,6 @@ $this->breadcrumbs=array(
 		<li class="nav-item"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" class="nav-link active btn-primary"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 		<li class="nav-item"><a href="#nuevo" aria-controls="nuevo" role="tab" data-toggle="tab" class="nav-link btn-primary"><span class="glyphicon glyphicon-plus"></span> Nuevo Usuario</a></li>    
 		<li class="nav-item"><a href="#nuevo-perfil" aria-controls="nuevo-perfil" role="tab" data-toggle="tab" class="nav-link btn-primary"><span class="glyphicon glyphicon-plus"></span> Nuevo Perfil</a></li>    
-		<li class="nav-item"><a href="#nuevo-grupo" aria-controls="nuevo-grupo" role="tab" data-toggle="tab" class="nav-link btn-primary"><span class="glyphicon glyphicon-plus"></span> Nuevo Grupo</a></li>
-		<li class="nav-item"><a href="#nuevo-rol" aria-controls="nuevo-rol" role="tab" data-toggle="tab" class="nav-link btn-primary"><span class="glyphicon glyphicon-plus"></span> Nuevo Rol</a></li>
 	</ul>
 	
   <!-- Tab panes -->
@@ -53,7 +51,8 @@ $this->breadcrumbs=array(
                                             <td><?php echo $usuario->nick ?></td>                    
                                             <td class="text-right">                        
                                                 <a href="<?php echo Yii::app()->createUrl('/usuarios/default/view',array('id'=>$usuario->id)) ?>" class="btn btn-warning"><img src="<?php echo Yii::app()->request->baseUrl.'/images/view.png' ?>"/></a> 
-                                                <a href="<?php echo Yii::app()->createUrl('/usuarios/default/borrar',array('id'=>$usuario->id)) ?>" class="btn btn-danger"><img src="<?php echo Yii::app()->request->baseUrl.'/images/delete.png' ?>"/></a>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalBorrar"><img src="<?php echo Yii::app()->request->baseUrl.'/images/delete.png' ?>"/></button>
+												<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRestablecer"><img src="<?php echo Yii::app()->request->baseUrl.'/images/lock.png' ?>"/></button>
                                             </td>
                                         </tr>
                                         <?php } ?>
@@ -97,19 +96,48 @@ $this->breadcrumbs=array(
               
           </div> 
       </div> 
-	  <div role="tabpanel" class="tab-pane" id="nuevo-grupo">
-          <div class="col-lg-8">
-                <?php echo $this->renderPartial('_grupo', array('grupo'=>$grupo)); ?>
-              
-          </div> 
-      </div> 
-	  <div role="tabpanel" class="tab-pane" id="nuevo-rol">
-          <div class="col-lg-8">
-                aa
-              
-          </div> 
-      </div> 
   </div>
+  
+<!-- Modal -->
+<div class="modal fade" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Esta seguro de querer borrar este usuario?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <a href="<?php echo Yii::app()->createUrl('/usuarios/default/borrar',array('id'=>$usuario->id)) ?>" class="btn btn-danger">Si</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalRestablecer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Esta seguro de querer restablecer la contraseña de este usuario?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <a href="<?php echo Yii::app()->createUrl('/usuarios/default/restablecer',array('id'=>$usuario->id)) ?>" class="btn btn-danger">Si</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 </div>
 

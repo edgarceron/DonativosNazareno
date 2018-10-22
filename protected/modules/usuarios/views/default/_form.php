@@ -54,34 +54,28 @@
 		<?php echo $form->error($model,'email'); ?>
 	</div>
     </div>
-    <div class="col-lg-6">
+	
+	<div class="col-lg-6">
 	<div class="form-group">
-		<?php echo $form->labelEx($model,'dat3',array('class'=>'label label-success')); ?>
-		<?php echo $form->textField($model,'dat3',array('class'=>'form-control')); ?>
-		<?php echo $form->error($model,'dat3'); ?>
+		<?php echo $form->labelEx($model,'telefono',array('class'=>'label label-success')); ?>
+		<?php echo $form->textField($model,'telefono',array('class'=>'form-control')); ?>
+		<?php echo $form->error($model,'telefono'); ?>
 	</div>
     </div>
+	
+	<div class="col-lg-6">
+	<div class="form-group">
+		<?php echo $form->labelEx($model,'movil',array('class'=>'label label-success')); ?>
+		<?php echo $form->textField($model,'movil',array('class'=>'form-control')); ?>
+		<?php echo $form->error($model,'movil'); ?>
+	</div>
+    </div>
+    
     <div class="col-lg-6">
 	<div class="form-group">
 		<?php echo $form->labelEx($model,'perfil',array('class'=>'label label-success')); ?>
 		<?php echo $form->dropDownList($model,'perfil', CHtml::listData(Perfil::model()->findAll(),'id','nombre'),array('class'=>'form-control')); ?>
 		<?php echo $form->error($model,'perfil'); ?>
-	</div>
-    </div>
-    
-    <div class="col-lg-6">
-	<div class="form-group">
-		<?php echo $form->labelEx($model,'dat1',array('class'=>'label label-success')); ?>
-		<?php echo $form->dropDownList($model,'dat1', CHtml::listData(Grupo::model()->findAll(),'id','nombre'),array('class'=>'form-control')); ?>
-		<?php echo $form->error($model,'dat1'); ?>
-	</div>
-    </div>
-    
-    <div class="col-lg-6">
-	<div class="form-group">
-		<?php echo $form->labelEx($model,'dat2',array('class'=>'label label-success')); ?>
-		<?php echo $form->dropDownList($model,'dat2',CHtml::listData(Usuarios::model()->findAll(),'id','nick'),array('class'=>'form-control')); ?>
-		<?php echo $form->error($model,'dat2'); ?>
 	</div>
     </div>
  
@@ -97,6 +91,13 @@
     <div class="col-lg-12">
 	<div class="form-group">
 		<?php echo CHtml::submitButton('Submit',array('class'=>'btn btn-primary')); ?>
+		<?php 
+		$id_app_user = Yii::app()->user->id;
+		$id_user = $model['id'];
+		if($id_user == $id_app_user){
+			echo CHtml::button('Cambiar mi contraseña', array('onclick' => 'js:document.location.href="'. Yii::app()->createAbsoluteUrl('/usuarios/default/cambiar', array('id' => $id_user)) . '"', 'class' => 'btn btn-primary')); 
+		}
+		?>
 	</div>
     </div>
 <?php $this->endWidget(); ?>

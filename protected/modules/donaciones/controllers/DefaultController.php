@@ -98,6 +98,8 @@ class DefaultController extends Controller
 			'eliminar'=>'application.modules.'.$this->module->id.'.controllers.acciones.EliminarAction',  
 			'vista'=>'application.modules.'.$this->module->id.'.controllers.acciones.VistaAction',                         
 			'eventosFiltrar'=>'application.modules.'.$this->module->id.'.controllers.acciones.EventosFiltrarAction',                         
+			'donanteCargar'=>'application.modules.'.$this->module->id.'.controllers.acciones.DonanteCargarAction',                         
+			'donanteGuardar'=>'application.modules.'.$this->module->id.'.controllers.acciones.DonanteGuardarAction',                         
 		);
 	}
         
@@ -135,6 +137,14 @@ class DefaultController extends Controller
                             ),
 			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
                                 'actions' => array('eventosFiltrar'),
+                                'expression' => array(__CLASS__,'allowIndex'),
+                            ),
+			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('donanteCargar'),
+                                'expression' => array(__CLASS__,'allowIndex'),
+                            ),
+			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('donanteGuardar'),
                                 'expression' => array(__CLASS__,'allowIndex'),
                             ),
 			array('deny',  // deny all users

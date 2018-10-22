@@ -11,7 +11,16 @@ $this->breadcrumbs=array(
 
 <h1>Login</h1>
 
-<p>Please fill out the following form with your login credentials:</p>
+<p>Por favor ingrese sus credenciales para iniciar sensión:</p>
+<?php
+ if(isset($_GET['mensaje'])){
+	$mensaje =  $_GET['mensaje'];
+	if($mensaje == 1){
+		echo '<div class="alert alert-success" role="alert">La contraseña se cambio satisfactoriamente, por favor ingrese con sus nueva contraseña</div>';
+	}
+ }
+?>
+
 
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -22,7 +31,6 @@ $this->breadcrumbs=array(
 	),
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<div class="form-group col-md-6">
 		<?php echo $form->labelEx($model,'username'); ?>
@@ -34,9 +42,6 @@ $this->breadcrumbs=array(
 		<?php echo $form->labelEx($model,'password'); ?>
 		<?php echo $form->passwordField($model,'password', array('class'=>'form-control')); ?>
 		<?php echo $form->error($model,'password'); ?>
-		<p class="hint">
-			Hint: You may login with <kbd>demo</kbd>/<kbd>demo</kbd> or <kbd>admin</kbd>/<kbd>admin</kbd>.
-		</p>
 	</div>
 
 	<div class="form-group col-md-6 rememberMe">
@@ -45,8 +50,9 @@ $this->breadcrumbs=array(
 		<?php echo $form->error($model,'rememberMe'); ?>
 	</div>
 
-	<div class="row buttons">
+	<div class="form-group">
 		<?php echo CHtml::submitButton('Login', array('class' => 'btn btn-primary')); ?>
+		<?php echo CHtml::button('Olvide mi contraseña', array('onclick' => 'js:document.location.href="'. Yii::app()->createAbsoluteUrl('/usuarios/default/recuperar') . '"', 'class' => 'btn btn-primary')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

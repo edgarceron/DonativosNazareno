@@ -4,8 +4,9 @@
  * This is the model class for table "opciones".
  *
  * The followings are the available columns in table 'opciones':
+ * @property integer $id
  * @property string $opcion
- * @property integer $valor
+ * @property string $valor
  */
 class Opciones extends CActiveRecord
 {
@@ -26,11 +27,10 @@ class Opciones extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('opcion, valor', 'required'),
-			array('valor', 'numerical', 'integerOnly'=>true),
-			array('opcion', 'length', 'max'=>20),
+			array('opcion, valor', 'length', 'max'=>32),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('opcion, valor', 'safe', 'on'=>'search'),
+			array('id, opcion, valor', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,6 +51,7 @@ class Opciones extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
+			'id' => 'ID',
 			'opcion' => 'Opcion',
 			'valor' => 'Valor',
 		);
@@ -74,8 +75,9 @@ class Opciones extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->compare('id',$this->id);
 		$criteria->compare('opcion',$this->opcion,true);
-		$criteria->compare('valor',$this->valor);
+		$criteria->compare('valor',$this->valor,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -11,9 +11,28 @@ class DonanteCargarAction extends CAction
 		 *
 		 * Esta acción se usara para ambos, donante y representante legal
 		 */
+		
+		$documento = $_GET['documento'];
+		$donante = Donantes::model()->find('numero_documento_donante = ' . $documento); 
+		if($donante == null){
+			$model = new Donantes;
+			$model['numero_documento_donante'] = $documento;
+			$parametros_get = '';
+			$icono = '/images/new64.png';
+			$texto_boton = 'Crear';
+		}
+		else{
+			$model = Donantes::model()->findByPk($donante['id']);
+			$parametros_get = $donante['id'];
+			$icono = '/images/edit64.png';
+			$texto_boton = "Guardar";
+		}
 
-        $this->controller->render('index',array(
-
+        $this->controller->renderPartial('_formulario_donante',array(
+			'icono' => $icono,
+			'texto_boton' => $texto_boton,
+			'parametros_get' => $parametros_get,
+			'model' => $model,
         ));
     }
 }

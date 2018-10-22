@@ -136,10 +136,17 @@ class SiteController extends Controller
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
-                        {
-                            Logs::logcreate(0);                            
-                            $this->redirect(Yii::app()->user->returnUrl);
-                        }				
+			{
+				Logs::logcreate(0);
+				$id = Yii::app()->user->id;
+				$restablecer = SofintUsers::model()->findByPk($id)['restablecer'];
+				if($restablecer == 1){
+					$this->redirect(Yii::app()->createAbsoluteUrl('/usuarios/default/nuevaContra') . "?id=$id");
+				}
+				else{
+					$this->redirect(Yii::app()->user->returnUrl);
+				}
+			}				
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));

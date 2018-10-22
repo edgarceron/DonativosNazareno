@@ -45,6 +45,10 @@ class DefaultController extends Controller
                 'verperfil'=>'application.modules.'.$this->module->id.'.controllers.acciones.VerperfilAction',
                 'borrarperfil'=>'application.modules.'.$this->module->id.'.controllers.acciones.BorrarperfilAction',
                 'grupo'=>'application.modules.'.$this->module->id.'.controllers.acciones.GrupoAction',
+                'restablecer'=>'application.modules.'.$this->module->id.'.controllers.acciones.RestablecerAction',	
+                'nuevaContra'=>'application.modules.'.$this->module->id.'.controllers.acciones.NuevaContraAction',	
+                'recuperar'=>'application.modules.'.$this->module->id.'.controllers.acciones.RecuperarAction',	
+                'cambiar'=>'application.modules.'.$this->module->id.'.controllers.acciones.CambiarAction',	
             );
         }
         
@@ -83,6 +87,22 @@ class DefaultController extends Controller
                     array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
                                 'actions' => array('grupo'),
                                 'expression' => array(__CLASS__,'allowGrupo'),
+                            ),
+					array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('restablecer'),
+                                'expression' => array(__CLASS__,'allowRestablecer'),
+                            ),
+					array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('nuevaContra'),
+                                'expression' => array(__CLASS__,'allowNuevaContra'),
+                            ),
+					array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('recuperar'),
+                                'expression' => array(__CLASS__,'allowRecuperar'),
+                            ),
+					array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('cambiar'),
+                                'expression' => array(__CLASS__,'allowCambiar'),
                             ),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -243,9 +263,9 @@ class DefaultController extends Controller
             }
         } 
         
-        public function allowGrupo()
+    public function allowGrupo()
 	{
-            if(Yii::app()->user->name != "Guest"){
+        if(Yii::app()->user->name != "Guest"){
             $usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
             $criteria = new CDbCriteria();            
             $modulo = 'usuarios';
@@ -261,7 +281,58 @@ class DefaultController extends Controller
             {
                 return false;
             }
+        }
+    } 
+	
+	public function allowRestablecer()
+	{
+        if(Yii::app()->user->name != "Guest"){
+            $usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
+            $criteria = new CDbCriteria();            
+            $modulo = 'usuarios';
+            $criteria->compare('perfil', $usuario->perfil);
+            $criteria->compare('modulo', $modulo);
+            $criteria->compare('accion', 'restablecer');
+            $permisos = PerfilContenido::model()->find($criteria);
+            if(count($permisos) == 1)
+            {
+                return true;
             }
-        } 
-        
+            else
+            {
+                return false;
+            }
+        }
+    } 
+	
+	public function allowCambiar()
+	{
+        if(Yii::app()->user->name != "Guest"){
+            $usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
+            $criteria = new CDbCriteria();            
+            $modulo = 'usuarios';
+            $criteria->compare('perfil', $usuario->perfil);
+            $criteria->compare('modulo', $modulo);
+            $criteria->compare('accion', 'cambiar');
+            $permisos = PerfilContenido::model()->find($criteria);
+            if(count($permisos) == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+    
+	public function allowNuevaContra()
+	{
+		return true;
+	}
+	
+	public function allowRecuperar()
+	{
+		return true;
+	}
 }

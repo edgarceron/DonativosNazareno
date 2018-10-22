@@ -68,7 +68,19 @@ class ListaAction extends CAction
 			$maximo = '';
 		}
 		
+		if(isset($_GET['desde'])){
+			$desde = $_GET['desde'];
+		}
+		else{
+			$desde = '';
+		}
 		
+		if(isset($_GET['hasta'])){
+			$hasta = $_GET['hasta'];
+		}
+		else{
+			$hasta = '';
+		}
 		
 		$errores = '';
 		$model = new Donaciones;
@@ -123,7 +135,17 @@ class ListaAction extends CAction
 		}
 		
 		$criteria->addCondition('valor_donacion > ' . $min . ' AND valor_donacion < ' . $max);
-
+		
+		if($desde != '' && $hasta != ''){
+			$criteria->addCondition('t2.fecha_evento BETWEEN "'.$desde.'" AND DATE_ADD("'.$hasta.'", INTERVAL 1 DAY)');
+		}
+		else if($desde != ''){
+			$criteria->addCondition('t2.fecha_evento > "'.$desde.'"');
+		}
+		else if($hasta != ''){
+			$criteria->addCondition('t2.fecha_evento < "'.$hasta.'"');
+		}
+		
 		
         $reporte = new CActiveDataProvider($model, array('criteria' => $criteria));
 		
@@ -132,6 +154,8 @@ class ListaAction extends CAction
 			'donante' => $donante,
 			'minimo' => $minimo,
 			'maximo' => $maximo,
+			'desde' => $desde,
+			'hasta' => $hasta,
 			'errores' => $errores,
 			'meses' => $meses,
 			'years' => $years,

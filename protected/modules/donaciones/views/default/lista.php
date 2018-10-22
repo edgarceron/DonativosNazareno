@@ -29,19 +29,20 @@ $this->breadcrumbs=array(
 			)); ?>
 
 				<?php echo $errores; ?>
+				
 				<div class="form-row">
 					<div class="form-group col-md-4">
-						<?php echo CHtml::label('Evento: ', 'tipo'); ?>
+						<?php echo CHtml::label('Evento: ', 'evento'); ?>
 						<?php echo CHtml::dropDownList('evento',$evento, $eventos, array('id'=>'evento', 'class'=>'form-control')); ?>
 					</div>	
 					
 					<div class="form-group col-md-4">
-						<?php echo CHtml::label('Año', 'year'); ?>
+						<?php echo CHtml::label('Eventos en el año:', 'year'); ?>
 						<?php echo CHtml::dropDownList('year',date('Y'), $years, array('id'=>'year', 'class'=>'form-control')); ?>
 					</div>	
 					
 					<div class="form-group col-md-4">
-						<?php echo CHtml::label('Mes', 'mes'); ?>
+						<?php echo CHtml::label('Eventos en el mes:', 'mes'); ?>
 						<?php echo CHtml::dropDownList('mes',date('m'), $meses, array('id'=>'mes', 'class'=>'form-control', 'onchange' => 'filtrarEventos()')); ?>
 					</div>	
 					
@@ -56,13 +57,25 @@ $this->breadcrumbs=array(
 				
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<?php echo CHtml::label('Valor desde', 'minimo'); ?>
+						<?php echo CHtml::label('Valor donación desde', 'minimo'); ?>
 						<?php echo CHtml::textField('minimo',$minimo,array('id'=>'minimo', 'class'=>'form-control')); ?>
 					</div>	
 					
 					<div class="form-group col-md-6">
 						<?php echo CHtml::label('hasta', 'maximo'); ?>
 						<?php echo CHtml::textField('maximo',$maximo,array('id'=>'maximo', 'class'=>'form-control')); ?>
+					</div>	
+				</div>	
+				
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<?php echo CHtml::label('Fecha desde', 'desde'); ?>
+						<?php echo CHtml::dateField('desde',$desde,array('id'=>'minimo', 'class'=>'form-control')); ?>
+					</div>	
+					
+					<div class="form-group col-md-6">
+						<?php echo CHtml::label('hasta', 'hasta'); ?>
+						<?php echo CHtml::dateField('hasta',$hasta,array('id'=>'maximo', 'class'=>'form-control')); ?>
 					</div>	
 				</div>	
 				
@@ -103,7 +116,7 @@ $this->breadcrumbs=array(
 						array
 						(
 							'class'=>'CButtonColumn',
-							'template'=>'{view}{edit}{delete}',
+							'template'=>'{view}{edit}' /* . '{delete}' */,
 							'buttons'=>array
 							(
 								'view' => array
@@ -118,6 +131,7 @@ $this->breadcrumbs=array(
 									'imageUrl'=>Yii::app()->request->baseUrl.'/images/edit.png',
 									'url'=>'Yii::app()->createUrl("donaciones/default/editar", array("id"=>$data->id))',
 								),
+								/*
 								'delete' => array
 								(
 									'label'=>'Ver el evento',
@@ -129,7 +143,7 @@ $this->breadcrumbs=array(
 										"minimo" => "'. $minimo .'",
 										"maximo" => "'. $maximo .'",
 										))',
-								),
+								),*/
 							),
 						)
 						
