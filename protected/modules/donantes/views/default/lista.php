@@ -32,7 +32,7 @@ $this->breadcrumbs=array(
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<?php echo CHtml::label('Tipo de documento', 'tipo'); ?>
-						<?php echo CHtml::textField('tipo',$tipo,array('id'=>'tipo', 'class'=>'form-control')); ?>
+						<?php echo CHtml::dropDownList('tipo',$tipo, array('1' => 'Cedula de ciudadania', '2' => 'Nit', '3' => 'Pasaporte'), array('id'=>'tipo', 'class'=>'form-control')); ?>
 					</div>	
 					
 					<div class="form-group col-md-6">
@@ -95,6 +95,9 @@ $this->breadcrumbs=array(
 					'cssFile' => Yii::app()->baseUrl . '/css/bootstrap.min.css',
 					//'data'=>$queue,
 					'itemsCssClass' => 'table table-hover table-striped',
+					'pager'=>array(
+						"internalPageCssClass" => "page-item",
+					),
 					'columns'=>array(
 						'numero_documento_donante',
 						'nombre_donante',	

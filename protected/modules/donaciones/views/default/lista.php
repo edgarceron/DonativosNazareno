@@ -70,18 +70,41 @@ $this->breadcrumbs=array(
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<?php echo CHtml::label('Fecha desde', 'desde'); ?>
-						<?php echo CHtml::dateField('desde',$desde,array('id'=>'minimo', 'class'=>'form-control')); ?>
+						<?php echo CHtml::dateField('desde',$desde,array('id'=>'desde', 'class'=>'form-control')); ?>
 					</div>	
 					
 					<div class="form-group col-md-6">
 						<?php echo CHtml::label('hasta', 'hasta'); ?>
-						<?php echo CHtml::dateField('hasta',$hasta,array('id'=>'maximo', 'class'=>'form-control')); ?>
+						<?php echo CHtml::dateField('hasta',$hasta,array('id'=>'hasta', 'class'=>'form-control')); ?>
 					</div>	
 				</div>	
 				
 				<div class="form-row">
-					<div class="form-group col-md-12">
-						<?php echo CHtml::submitButton('Filtrar',array('class'=>'btn btn-primary')); ?>
+					<div class="form-group col-md-3">
+						<?php echo CHtml::submitButton('Filtrar',array('class'=>'btn btn-primary form-control')); ?>
+					</div>
+					<div class="form-group col-md-3">
+						<?php echo CHtml::button('Limpiar', array('class' => 'btn btn-primary form-control', 'onclick' => 'limpiarCampos()')) ?>
+					</div>
+					<div class="form-group col-md-3">
+					<?php
+						echo CHtml::link(
+
+							'Generar pdf', 
+							Yii::app()->createUrl("/donaciones/default/reportePdf", array(
+								'evento' => $evento,
+								'donante' => $donante,
+								'minimo' => $minimo,
+								'maximo' => $maximo,
+								'desde' => $desde,
+								'hasta' => $hasta,
+							)), 
+							array(
+								'submit'=>array('/donaciones/default/reportePdf'),
+								'class'=>'btn btn-primary form-control'
+							)
+						);
+					?>
 					</div>
 				</div>
 			<?php $this->endWidget(); ?>
@@ -106,7 +129,10 @@ $this->breadcrumbs=array(
 					'pager' => array('cssFile' => Yii::app()->baseUrl . '/css/bootstrap.min.css'),
 					'cssFile' => Yii::app()->baseUrl . '/css/bootstrap.min.css',
 					//'data'=>$queue,
-					'itemsCssClass' => 'table table-hover table-striped',
+					'itemsCssClass' => 'table table-hover table-striped', 
+					'pager'=>array(
+						"internalPageCssClass" => "page-item",
+					),
 					'columns'=>array(
 						'idDonanteDonacion.nombre_donante',	
 						'idDonanteDonacion.apellido_donante',
@@ -189,5 +215,16 @@ $this->breadcrumbs=array(
 				if(response.length != 0) createOptions(response, e);
 			}
 		);
+	}
+	
+	function limpiarCampos(){
+		document.getElementById("evento").value = "";
+		document.getElementById("year").value = "";
+		document.getElementById("mes").value = "";
+		document.getElementById("donante").value = "";
+		document.getElementById("minimo").value = "";
+		document.getElementById("maximo").value = "";
+		document.getElementById("desde").valueAsDate = null;
+		document.getElementById("hasta").valueAsDate = null;
 	}
 </script>

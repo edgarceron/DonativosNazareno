@@ -100,6 +100,7 @@ class DefaultController extends Controller
 			'eventosFiltrar'=>'application.modules.'.$this->module->id.'.controllers.acciones.EventosFiltrarAction',                         
 			'donanteCargar'=>'application.modules.'.$this->module->id.'.controllers.acciones.DonanteCargarAction',                         
 			'donanteGuardar'=>'application.modules.'.$this->module->id.'.controllers.acciones.DonanteGuardarAction',                         
+			'reportePdf'=>'application.modules.'.$this->module->id.'.controllers.acciones.ReportePdfAction',                         
 		);
 	}
         
@@ -145,6 +146,10 @@ class DefaultController extends Controller
                             ),
 			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
                                 'actions' => array('donanteGuardar'),
+                                'expression' => array(__CLASS__,'allowIndex'),
+                            ),
+			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('reportePdf'),
                                 'expression' => array(__CLASS__,'allowIndex'),
                             ),
 			array('deny',  // deny all users

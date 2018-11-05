@@ -97,6 +97,7 @@ class DefaultController extends Controller
 			'guardar'=>'application.modules.'.$this->module->id.'.controllers.acciones.GuardarAction', 
 			'eliminar'=>'application.modules.'.$this->module->id.'.controllers.acciones.EliminarAction',  
 			'vista'=>'application.modules.'.$this->module->id.'.controllers.acciones.VistaAction',
+			'certificado'=>'application.modules.'.$this->module->id.'.controllers.acciones.CertificadoAction',
 		);
 	}
         
@@ -130,6 +131,10 @@ class DefaultController extends Controller
                             ),
 			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
                                 'actions' => array('eliminar'),
+                                'expression' => array(__CLASS__,'allowIndex'),
+                            ),
+			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('certificado'),
                                 'expression' => array(__CLASS__,'allowIndex'),
                             ),
 			array('deny',  // deny all users

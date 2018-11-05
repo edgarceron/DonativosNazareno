@@ -5,7 +5,12 @@ class CrearAction extends CAction
     public function run()
     {                           
         $model = new Donaciones;
-		$eventos = $this->getEventos();
+		if(isset($_GET['evento'])){
+			$eventos = $this->getEventos($_GET['evento']);
+		}
+		else{
+			$eventos = $this->getEventos();
+		}
 		$meses = array(
 			"" => "--",
 			"01" => "Enero", 
@@ -78,10 +83,21 @@ class CrearAction extends CAction
 	 * Filtra los eventos del mes y año actual
 	 * @return array Lista de eventos
 	 */
-	public function getEventos(){
+	public function getEventos($id = 0){
+		if($id != 0){
+			$evento = Eventos::model()->findByPk($id);
+			$fecha = $evento['fecha_evento'];
+			$aux = explode('-', $fecha);
+			$y = $aux[0];
+			$m = $aux[1];
+		}
+		else{
+			$y = date('Y');
+			$m = date('m');
+		}
 		$criteria = new CDbCriteria;
-		$criteria->addCondition('YEAR(fecha_evento) = "' . date('Y') . '"');
-		$criteria->addCondition('MONTH(fecha_evento) = "' . date('m') . '"');
+		$criteria->addCondition('YEAR(fecha_evento) = "' . $y . '"');
+		$criteria->addCondition('MONTH(fecha_evento) = "' . $m . '"');
 		
 		$eventos = Eventos::model()->findAll($criteria);
 		$lista = array();

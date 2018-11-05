@@ -109,6 +109,10 @@ class Donantes extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public function tiposDocumento(){
+		return array('1' => 'Cedula de ciudadania', '2' => 'Nit', '3' => 'Pasaporte');
+	}
 
 	/**
 	 * @return CDbConnection the database connection used for this class

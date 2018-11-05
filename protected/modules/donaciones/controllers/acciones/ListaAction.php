@@ -104,12 +104,12 @@ class ListaAction extends CAction
 		
 		//Calculo de errores
 		if($minimo != '' && !is_numeric($minimo)){
-			$minimo = 0;
-			$errores = $errores + "- Desde debe ser un valor numerico<br>";
+			$minimo = '';
+			$errores = $errores . "- Desde debe ser un valor numerico<br>";
 		}
 		if($maximo != '' && !is_numeric($maximo)){
-			$maximo = 0;
-			$errores = $errores + "- Hasta debe ser un valor numerico<br>";
+			$maximo = '';
+			$errores = $errores . "- Hasta debe ser un valor numerico<br>";
 		}
 		//Fin del calculo de errores
 		if($errores != ''){

@@ -73,6 +73,9 @@ $this->breadcrumbs=array(
 					'cssFile' => Yii::app()->baseUrl . '/css/bootstrap.min.css',
 					//'data'=>$queue,
 					'itemsCssClass' => 'table table-hover table-striped',
+					'pager'=>array(
+						"internalPageCssClass" => "page-item",
+					),
 					'columns'=>array(
 						'nombre_evento',
 						'fecha_evento',					

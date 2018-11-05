@@ -42,6 +42,9 @@
 				<?php echo CHtml::button('Editar', array('onclick' => 'js:document.location.href="'. Yii::app()->request->baseUrl . '/index.php/donantes/default/editar/id/' . $data->id .'"', 'class' => 'btn btn-primary')); ?>
 				<?php echo CHtml::button('Eliminar', array('onclick' => 'js:document.location.href="'. Yii::app()->request->baseUrl . '/index.php/donantes/default/eliminar/id/' . $data->id .'"', 'class' => 'btn btn-primary')); ?>
 				<?php echo CHtml::button('Lista de donantes', array('onclick' => 'js:document.location.href="'. Yii::app()->request->baseUrl . '/index.php/donantes/default/lista"', 'class' => 'btn btn-primary')); ?>
+				
 			</div>
 		</div>
 	</div>
+	
+	<?php $this->renderPartial('donaciones', array('desde' => $desde, 'hasta' => $hasta, 'dataProvider' => $dataProvider, 'id' => $id));?>
