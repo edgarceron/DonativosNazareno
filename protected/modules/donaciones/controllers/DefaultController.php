@@ -100,7 +100,9 @@ class DefaultController extends Controller
 			'eventosFiltrar'=>'application.modules.'.$this->module->id.'.controllers.acciones.EventosFiltrarAction',                         
 			'donanteCargar'=>'application.modules.'.$this->module->id.'.controllers.acciones.DonanteCargarAction',                         
 			'donanteGuardar'=>'application.modules.'.$this->module->id.'.controllers.acciones.DonanteGuardarAction',                         
+			'donanteTipo'=>'application.modules.'.$this->module->id.'.controllers.acciones.DonanteTipoAction',                         
 			'reportePdf'=>'application.modules.'.$this->module->id.'.controllers.acciones.ReportePdfAction',                         
+			'reporteExcel'=>'application.modules.'.$this->module->id.'.controllers.acciones.ReporteExcelAction',                         
 		);
 	}
         
@@ -149,7 +151,15 @@ class DefaultController extends Controller
                                 'expression' => array(__CLASS__,'allowIndex'),
                             ),
 			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('donanteTipo'),
+                                'expression' => array(__CLASS__,'allowIndex'),
+                            ),
+			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
                                 'actions' => array('reportePdf'),
+                                'expression' => array(__CLASS__,'allowIndex'),
+                            ),
+			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('reporteExcel'),
                                 'expression' => array(__CLASS__,'allowIndex'),
                             ),
 			array('deny',  // deny all users

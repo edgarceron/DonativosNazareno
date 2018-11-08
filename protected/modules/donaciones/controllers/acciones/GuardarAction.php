@@ -62,13 +62,23 @@ class GuardarAction extends CAction
 		$model['validez_donacion'] = 1;
 		
 		$donante = Donantes::model()->find('numero_documento_donante = "' . $model['id_donante_donacion'] . '"');
+		$aux_donante = $model['id_donante_donacion'];
 		if($donante == null){
-			$aux_donante = $model['id_donante_donacion'];
 			$model['id_donante_donacion'] = '';
 		}
 		else{
 			$model['id_donante_donacion'] = $donante['id'];
 		}
+		
+		$representante = Donantes::model()->find('numero_documento_donante = "' . $model['id_representante_donacion'] . '"');
+		$aux_representante = $model['id_representante_donacion'];
+		if($representante == null){
+			$model['id_representante_donacion'] = '';
+		}
+		else{
+			$model['id_representante_donacion'] = $representante['id'];
+		}
+		
 		//Guardado
 		if($model->save()){
 			$id = $model['id'];
@@ -79,11 +89,17 @@ class GuardarAction extends CAction
 			));*/
 		}
 		else{
-			if($donante == null){
+			if($donante == null && $aux_donante != ''){
 				$model->clearErrors('id_donante_donacion');
 				$model->addError('id_donante_donacion', 'Donante no existe, debe guardar el donante antes de enviar el formulario');
-				$model['id_donante_donacion'] = $aux_donante;
 			}
+			$model['id_donante_donacion'] = $aux_donante;
+			
+			if($representante == null && $aux_representante != ''){
+				$model->clearErrors('id_representante_donacion');
+				$model->addError('id_representante_donacion', 'Representante no existe, debe guardar el donante antes de enviar el formulario');
+			}
+			$model['id_representante_donacion'] = $aux_representante;
 			
 			$this->controller->render('formulario',array(
 				'icono' => $icono,
@@ -91,6 +107,7 @@ class GuardarAction extends CAction
 				'meses' => $meses,
 				'years' => $years,
 				'eventos' => $eventos,
+				'mensaje' => '',
 				'parametros_get' => '',
 				'model' => $model,
 			));

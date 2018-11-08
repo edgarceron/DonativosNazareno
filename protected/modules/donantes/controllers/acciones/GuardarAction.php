@@ -19,9 +19,21 @@ class GuardarAction extends CAction
 		
 		//Añadiendo datos al modelo
 		$model->attributes=$_POST['Donantes'];
+		$errores = false;
+		if($this->existenDuplicados($model['numero_documento_donante'], $model['tipo_documento_donante'])){
+			$model->addError('numero_documento_donante', 'Existe otro donante con este numero de documento');
+			$errores = true;
+		}
+		
+		if($model['tipo_documento_donante'] != 2){
+			if($model['apellido_donante'] == ''){
+				$model->addError('apellido_donante', 'Apellido no puede ser nulo si el donante es persona natural');
+				$errores = true;
+			}
+		}
 		
 		//Guardado
-		if($model->save()){
+		if(!$errores && $model->save()){
 			$id = $model['id'];
 			$this->controller->redirect(array(
 				'vista', 'id' => $id
@@ -36,6 +48,16 @@ class GuardarAction extends CAction
 			));
 		}
     }
+	
+	public function existenDuplicados($numero_documento, $tipo_documento){
+		$criteria = new CDbCriteria;
+		$criteria->compare('numero_documento_donante', $numero_documento);
+		$duplicados = Donantes::model()->find($criteria);
+		if($duplicados != null){
+			return true;
+		}
+		return false;
+	}
 }
 ?>
 

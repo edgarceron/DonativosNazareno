@@ -52,6 +52,10 @@ $this->breadcrumbs=array(
 					<div class="form-group col-md-6">
 						<?php echo CHtml::label('Numero documento donante', 'donante'); ?>
 						<?php echo CHtml::textField('donante',$donante,array('id'=>'donante', 'class'=>'form-control')); ?>
+					</div>
+					<div class="form-group col-md-3">
+						<?php echo CHtml::label('Mostrar donaciones anuladas', 'anuladas'); ?>
+						<?php echo CHtml::dropDownList('anuladas',$anuladas,array(1 => 'Si', 0 => 'No') ,array('id'=>'anuladas', 'class'=>'form-control')); ?>
 					</div>	
 				</div>	
 				
@@ -92,6 +96,27 @@ $this->breadcrumbs=array(
 
 							'Generar pdf', 
 							Yii::app()->createUrl("/donaciones/default/reportePdf", array(
+								'evento' => $evento,
+								'donante' => $donante,
+								'minimo' => $minimo,
+								'maximo' => $maximo,
+								'desde' => $desde,
+								'hasta' => $hasta,
+							)), 
+							array(
+								'submit'=>array('/donaciones/default/reportePdf'),
+								'class'=>'btn btn-primary form-control'
+							)
+						);
+					?>
+					</div>
+					
+					<div class="form-group col-md-3">
+					<?php
+						echo CHtml::link(
+
+							'Generar excel', 
+							Yii::app()->createUrl("/donaciones/default/reporteExcel", array(
 								'evento' => $evento,
 								'donante' => $donante,
 								'minimo' => $minimo,

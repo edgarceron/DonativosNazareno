@@ -82,6 +82,13 @@ class ListaAction extends CAction
 			$hasta = '';
 		}
 		
+		if(isset($_GET['anuladas'])){
+			$anuladas = $_GET['anuladas'];
+		}
+		else{
+			$anuladas = 0;
+		}
+		
 		$errores = '';
 		$model = new Donaciones;
 		
@@ -116,6 +123,9 @@ class ListaAction extends CAction
 			$errores = '<div class="alert alert-warning" role="alert">' . $errores . '</div>';
 		}
 		
+		if($anuladas == 0){
+			$criteria->compare('validez_donacion', 1);
+		}
 		if($evento != 0) $criteria->compare('id_evento', $evento);
 		$criteria->addCondition('id_donante_donacion IN (SELECT id FROM donantes WHERE numero_documento_donante LIKE "%' . $donante . '%") 
 			OR id_representante_donacion IN (SELECT id FROM donantes WHERE numero_documento_donante LIKE "%' . $donante . '%")');
@@ -156,6 +166,7 @@ class ListaAction extends CAction
 			'maximo' => $maximo,
 			'desde' => $desde,
 			'hasta' => $hasta,
+			'anuladas' => $anuladas,
 			'errores' => $errores,
 			'meses' => $meses,
 			'years' => $years,

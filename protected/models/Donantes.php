@@ -35,7 +35,7 @@ class Donantes extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('tipo_documento_donante, numero_documento_donante, nombre_donante, apellido_donante, direccion_donante, correo_donante, telefono_donante', 'required'),
+			array('tipo_documento_donante, numero_documento_donante, nombre_donante', 'required'),
 			array('tipo_documento_donante', 'numerical', 'integerOnly'=>true),
 			array('numero_documento_donante', 'length', 'max'=>11),
 			array('nombre_donante, apellido_donante', 'length', 'max'=>50),

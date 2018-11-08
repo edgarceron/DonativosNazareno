@@ -59,35 +59,44 @@ class EliminarAction extends CAction
 				$telefono = '';
 			}
 		}
+		
+		$criteria = new CDbCriteria;
+		$criteria->compare('id_representante_donacion',$id);
+		$donaciones = Donaciones::model()->findAll($criteria);
+		if(count($donaciones) > 0){
+			foreach($donaciones as $donacion){
+				$donacion['id_representante_donacion'] = null;
+				$donacion->save();
+			}
+		}
 
 		$criteria = new CDbCriteria;
 		$criteria->compare('id_donante_donacion',$id);
-		$criteria->compare('validez_donacion', 1);
 		$donaciones = Donaciones::model()->findAll($criteria);
 		if(count($donaciones) > 0){
-			$this->controller->redirect(array(
-				'vista', 'id' => $id, 'mensaje' => '1'
-			));
+			foreach($donaciones as $donacion){
+				$donacion['id_donante_donacion'] = 0;
+				$donacion->save();
+			}
+		}
+
+		$model = Donantes::model()->findByPk($id);
+		$model->delete();
+		if($lugar == 'reporte'){
+			$this->controller->redirect(
+				Yii::app()->createUrl(
+				"donantes/default/lista", 
+				array(
+				'nombres' => $nombres,
+				'apellidos' => $apellidos,
+				'tipo' => $tipo,
+				'documento' => $documento,
+				'direccion' => $direccion,
+				'correo' => $correo,
+				'telefono' => $telefono,)));
 		}
 		else{
-			$model = Donantes::model()->findByPk($id);
-			$model->delete();
-			if($lugar == 'reporte'){
-				$this->controller->redirect(
-					Yii::app()->createUrl(
-					"donantes/default/lista", 
-					array(
-					'nombres' => $nombres,
-					'apellidos' => $apellidos,
-					'tipo' => $tipo,
-					'documento' => $documento,
-					'direccion' => $direccion,
-					'correo' => $correo,
-					'telefono' => $telefono,)));
-			}
-			else{
-				$this->controller->redirect(Yii::app()->createUrl("donantes"));
-			}
+			$this->controller->redirect(Yii::app()->createUrl("donantes"));
 		}
         
     }

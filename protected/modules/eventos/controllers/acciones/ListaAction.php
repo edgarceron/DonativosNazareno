@@ -43,6 +43,7 @@ class ListaAction extends CAction
 		
 		$criteria->addCondition('fecha_evento BETWEEN "'.$desde.'" AND DATE_ADD("'.$hasta.'", INTERVAL 1 DAY)');
 		$criteria->addCondition('nombre_evento LIKE "%' . $nombre . '%"');
+		$criteria->order = 'fecha_evento DESC';
 		
 		
 		

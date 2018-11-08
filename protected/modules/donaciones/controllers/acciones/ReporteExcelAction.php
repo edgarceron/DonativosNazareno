@@ -1,8 +1,6 @@
 <?php
-require 'vendor/autoload.php';
-use Mpdf\Mpdf;
 
-class ReportePdfAction extends CAction
+class ReporteExcelAction extends CAction
 {
     //Reemplazar Model por el modelo que corresponda al modulo
     public function run()
@@ -56,28 +54,28 @@ class ReportePdfAction extends CAction
 			$anuladas = 0;
 		}
 		
+		
 		$criteria = $this->createCriteria($evento, $donante, $minimo, $maximo, $desde, $hasta, $anuladas); 
         $reporte = Donaciones::model()->findAll($criteria);
-		//echo '<pre>' . print_r($reporte , true) . '</pre>';
 		if($reporte){
 			$select = array(
 				"principal" => array('valor_donacion'), 
 				"idDonanteDonacion" => array('numero_documento_donante', 'nombre_donante', 'apellido_donante'),
 				"idEvento" => array('nombre_evento', 'fecha_evento'));
-			$tabla = $this->htmlTable($reporte, $select);
-			$html = $this->controller->renderPartial('reportePdf',array('tabla' => $tabla), true);
+			$tabla = $this->arrayTable($reporte, $select);
+			Yii::import('application.extensions.phpexcel.JPhpExcel');
+			$xls = new JPhpExcel('UTF-8', false, 'My Test Sheet');
+			$xls->addArray($tabla);
+			$xls->generateXML('reporte');
 		}
 		else{
-			$html = 'No hay datos para mostar';
+			
 		}
 		
-		
-		$mpdf = new Mpdf();
-		$mpdf->writeHTML($html);
-		$mpdf->Output();
     }
 	
 	/*
+	 * Construye un array a partir de un conjunto de datos 
 	 * @param $records array de CActiveRecord Object
 	 * @param $select array que contiene la información de las columnas a mostrar del CActiveRecord
 	 * principal en la posición "principal", en las siguientes posiciones se encuentran las columnas
@@ -86,20 +84,19 @@ class ReportePdfAction extends CAction
 	 * array( "principal" => array('columna1', 'columna2'), 
 	 *		  "nombreRelacion1" => array('columna1', 'columna2'),
 	 *	      "nombreRelacion2" => array('columna1', 'columna2'))
+	 * @return array con cabeceras y datos, cada array representa una fila
 	 */
 	
-	public function htmlTable($records, $select){
-		$html = '<table>';
-		$html .= $this->construirHeader($this->joinHeaders(current($records), $select));
-		$html .= '<tbody>';
-		$contador = 1;
+	public function arrayTable($records, $select){
+		$table = array();
+		$headers = $this->joinHeaders(current($records), $select);
+		$table[1] = $headers;
+		$contador = 2;
 		foreach($records as $record){
-			$html .= $this->construirColumna($this->joinContents($record, $select), $contador);
+			$table[$contador] = $this->joinContents($record, $select);
 			$contador++;
 		}
-		$html .= '</tbody>';
-		$html .= '</table>';
-		return $html;
+		return $table;
 	}
 	
 	/**
@@ -111,6 +108,7 @@ class ReportePdfAction extends CAction
 	 * array( "principal" => array('columna1', 'columna2'), 
 	 *		  "nombreRelacion1" => array('columna1', 'columna2'),
 	 *	      "nombreRelacion2" => array('columna1', 'columna2'))
+	 * @return array con los headers a mostrar
 	 */
 	
 	public function joinHeaders($record, $select){
@@ -131,7 +129,7 @@ class ReportePdfAction extends CAction
 	}
 	
 	/**
-	 * Obtiene los td de un record con sus joins
+	 * Obtiene las columnas en forma de array a partir de de un record con sus joins
 	 * @param $record CActiveRecord object 
 	 * @param $select array que contiene la información de las columnas a mostrar del CActiveRecord
 	 * principal en la posición "principal", en las siguientes posiciones se encuentran las columnas
@@ -139,6 +137,7 @@ class ReportePdfAction extends CAction
 	 * array( "principal" => array('columna1', 'columna2'), 
 	 *		  "nombreRelacion1" => array('columna1', 'columna2'),
 	 *	      "nombreRelacion2" => array('columna1', 'columna2'))
+	 * @return array cos los datos a mostrar
 	 */
 	
 	public function joinContents($record, $select){
@@ -182,41 +181,6 @@ class ReportePdfAction extends CAction
 		}
 		return $headers;
 	}
-	
-	/**
-	 * Devuelve el html con el thead de una tabla de acuerdo a una lista de cabeceras
-	 * @param @headers array con los nombres de las cabeceras
-	 * @return String html con el thead de una tabla
-	 */
-	public function construirHeader($headers){
-		$html = "<thead><tr>";
-		foreach($headers as $h){
-			$html .= "<th>" . $h . "</th>";
-		}
-		$html .= "</tr></thead>";
-		return $html;
-	}
-	
-	/**
-	 * Devuelve el html con el tr de una columna de tabla de acuerdo a una lista de campos
-	 * @param @contents array con los contenidos de cada td
-	 * @return String html con el tr de una tabla
-	 */
-	public function construirColumna($contents, $contador){
-		if( ($contador % 2) == 1){
-			$style = "background-color: rgba(0,0,0,.05);";
-		}
-		else{
-			$style = "background-color: rgba(0,0,0,0);";
-		}
-		$html = "<tr style = \"$style\">";
-		foreach($contents as $h){
-			$html .= "<td>" . $h . "</td>";
-		}
-		$html .= "</tr>";
-		return $html;
-	}
-	
 	
 	/**
 	 * Crea un objeto CDbCriteria de acuerdo a las condiciones de entrada
@@ -265,7 +229,6 @@ class ReportePdfAction extends CAction
 		if($anuladas == 0){
 			$criteria->compare('validez_donacion', 1);
 		}
-		
 		if($evento != 0) $criteria->compare('id_evento', $evento);
 		$criteria->addCondition('id_donante_donacion IN (SELECT id FROM donantes WHERE numero_documento_donante LIKE "%' . $donante . '%") 
 			OR id_representante_donacion IN (SELECT id FROM donantes WHERE numero_documento_donante LIKE "%' . $donante . '%")');

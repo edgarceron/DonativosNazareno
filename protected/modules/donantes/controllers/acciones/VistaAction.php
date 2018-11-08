@@ -32,6 +32,7 @@ class VistaAction extends CAction
 			),
 		);
 		$criteria->compare('id_donante_donacion', $model['id']);
+		$criteria->compare('validez_donacion', 1);
 		if($desde != '' && $hasta != ''){
 			$criteria->addCondition('t2.fecha_evento BETWEEN "'.$desde.'" AND DATE_ADD("'.$hasta.'", INTERVAL 1 DAY)');
 		}
@@ -49,11 +50,12 @@ class VistaAction extends CAction
 		
 		if(isset($_GET['mensaje'])){
 			$mensaje = $_GET['mensaje'];
+			if($mensaje == 1){
+				Yii::app()->user->setFlash('danger', 'El donante no se puede eliminar tiene donaciones asociadas');
+			}
 		}
 		
-		if($mensaje == 1){
-			$errores = '<div class="alert alert-danger" role="alert">El donante no se puede eliminar tiene donaciones asociadas</div>';
-		}
+		
 		
 
         $this->controller->render('vista',array(

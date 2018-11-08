@@ -19,8 +19,13 @@ class VistaAction extends CAction
 		}
 		$evento = Eventos::model()->findByPk($model['id_evento']);
 		$donante = Donantes::model()->findByPk($model['id_donante_donacion']);
+		
 		$model['id_evento'] = $evento['nombre_evento'] . " " . $evento['fecha_evento']; 
 		$model['id_donante_donacion'] = $donante['nombre_donante'] . " " . $donante['apellido_donante']; 
+		$representante = Donantes::model()->findByPk($model['id_representante_donacion']);
+		if($representante != null){
+			$model['id_representante_donacion'] = $representante['nombre_donante'] . " " . $representante['apellido_donante']; 
+		}
 		$model['valor_donacion'] = '$' . number_format($model['valor_donacion'], 0, ",", ".");
 		
         $this->controller->render('vista',array(

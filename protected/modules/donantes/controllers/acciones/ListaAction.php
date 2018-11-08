@@ -64,7 +64,7 @@ class ListaAction extends CAction
 		if($errores != ''){
 			$errores = '<div class="alert alert-warning" role="alert">' . $errores . '</div>';
 		}
-		
+		$criteria->addCondition('id != 0');
 		$criteria->addCondition('tipo_documento_donante LIKE "%' . $tipo . '%"');
 		$criteria->addCondition('numero_documento_donante LIKE "%' . $documento . '%"');
 		$criteria->addCondition('nombre_donante LIKE "%' . $nombres . '%"');
@@ -72,6 +72,7 @@ class ListaAction extends CAction
 		$criteria->addCondition('direccion_donante LIKE "%' . $direccion . '%"');
 		$criteria->addCondition('correo_donante LIKE "%' . $correo . '%"');
 		$criteria->addCondition('telefono_donante LIKE "%' . $telefono . '%"');
+		
 
         $reporte = new CActiveDataProvider($model, array('criteria' => $criteria));
 		

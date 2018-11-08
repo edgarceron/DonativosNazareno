@@ -36,6 +36,7 @@ class Donaciones extends CActiveRecord
 		return array(
 			array('id_evento, id_donante_donacion, valor_donacion, validez_donacion', 'required'),
 			array('id_evento, id_donante_donacion, id_representante_donacion, validez_donacion', 'numerical', 'integerOnly'=>true),
+			array('valor_donacion', 'numerical'),
 			array('valor_donacion', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -66,7 +67,7 @@ class Donaciones extends CActiveRecord
 			'id' => 'ID',
 			'id_evento' => 'Evento',
 			'id_donante_donacion' => 'Donante',
-			'id_representante_donacion' => 'Id Representante Donacion',
+			'id_representante_donacion' => 'Representante Legal',
 			'valor_donacion' => 'Valor Donacion',
 			'validez_donacion' => 'Validez Donacion',
 		);

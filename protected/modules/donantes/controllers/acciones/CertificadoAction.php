@@ -78,6 +78,7 @@ class CertificadoAction extends CAction
 		);
 		$criteria->select = 'SUM(valor_donacion) as valor_donacion';
 		$criteria->compare('id_donante_donacion', $id);
+		$criteria->compare('validez_donacion', 1);
 		if($desde != '' && $hasta != ''){
 			$criteria->addCondition('t2.fecha_evento BETWEEN "'.$desde.'" AND DATE_ADD("'.$hasta.'", INTERVAL 1 DAY)');
 		}

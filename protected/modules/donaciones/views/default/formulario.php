@@ -24,13 +24,17 @@
 				'enableAjaxValidation'=>false,
 			)); ?>
 
-
-			<?php echo $form->errorSummary($model); ?>
+			
+			<?php 
+				if($form->errorSummary($model) != ''){
+					echo '<div class="alert alert-danger" role="alert">' . $form->errorSummary($model) . '</div>'; 
+				}
+			?>
 			<div class="form-row">
 				<div class="form-group col-md-4">
 					<?php echo $form->labelEx($model,'id_evento',array()); ?>
 					<?php echo $form->dropDownList($model,'id_evento', $eventos, array('class'=>'form-control')); ?>
-					<?php echo $form->error($model,'id_evento'); ?>
+					<?php echo $form->error($model,'id_evento', array('style' => 'color : #F00')); ?>
 				</div>
 				
 				<div class="form-group col-md-4">
@@ -47,8 +51,8 @@
 			<div class="form-row">
 				<div class="form-group col-md-4">
 					<?php echo $form->labelEx($model,'id_donante_donacion',array()); ?>
-					<?php echo $form->textField($model,'id_donante_donacion',array('class'=>'form-control')); ?>
-					<?php echo $form->error($model,'id_donante_donacion'); ?>
+					<?php echo $form->textField($model,'id_donante_donacion',array('id' => 'id_donante', 'class'=>'form-control')); ?>
+					<?php echo $form->error($model,'id_donante_donacion', array('style' => 'color : #F00')); ?>
 				</div>
 				
 				<div class="form-group col-md-4">
@@ -67,23 +71,57 @@
 										'model'=> new Donantes, 
 										'icono' => '/images/new64.png',
 										'texto_boton' => 'Crear',
-										'parametros_get' => '',)); ?>
+										'parametros_get' => '',
+										'tipo' => 'donante')); ?>
 							</div>
 						</div>
 					</div>
+				</div>	
+			</div>
+			
+			<?php
+				$r = $model['id_representante_donacion'];
+				if($r == ''){
+					$clase = '"collapse form-row"';
+				}
+				else{
+					$clase = '"collapse show form-row"';
+				}
+			?>
+			<div class=<?php echo $clase; ?> id="representante">
+				<div class="form-group col-md-4">
+					<?php echo $form->labelEx($model,'id_representante_donacion',array()); ?>
+					<?php echo $form->textField($model,'id_representante_donacion',array('id' => 'id_representante', 'class'=>'form-control')); ?>
+					<?php echo $form->error($model,'id_representante_donacion', array('style' => 'color : #F00')); ?>
 				</div>
 				
-				<div class="collapse">
-					<?php echo $form->labelEx($model,'id_representante_donacion',array()); ?>
-					<?php echo $form->textField($model,'id_representante_donacion',array('class'=>'form-control')); ?>
-					<?php echo $form->error($model,'id_representante_donacion'); ?>
+				<div class="form-group col-md-4">
+					<?php echo CHtml::label('-', 'btnIngresar', array("style" => "color:#FFF")); ?>
+					<?php echo CHtml::button('Cargar', array('class' => 'btn btn-primary form-control', 'onclick' => 'mostrarRepresentante()')) ?>
 				</div>
+				
+				<div class="collapse col-md-12" id="formularioRepresentante">
+					<div class="card">
+						<div class="card-body text-secondary">
+							<div id = "representante_div">
+								<?php echo $this->renderPartial('_formulario_donante', 
+									array(
+										'model'=> new Donantes, 
+										'icono' => '/images/new64.png',
+										'texto_boton' => 'Crear',
+										'parametros_get' => '',
+										'tipo' => 'representante')); ?>
+							</div>
+						</div>
+					</div>
+				</div>	
 			</div>
+			
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<?php echo $form->labelEx($model,'valor_donacion',array()); ?>
 					<?php echo $form->textField($model,'valor_donacion',array('class'=>'form-control')); ?>
-					<?php echo $form->error($model,'valor_donacion'); ?>
+					<?php echo $form->error($model,'valor_donacion', array('style' => 'color : #F00')); ?>
 				</div>
 			</div>
 			<div class="form-row">
@@ -97,14 +135,14 @@
 
 <script type="text/javascript">
 	function mostrarDonante(){
-		var numdoc = $('#Donaciones_id_donante_donacion').val();
+		var numdoc = $('#id_donante').val();
 		<?php echo CHtml::ajax(
 			array(
 				'type'=>'GET',
 				'dataType'=>'html',
 				'async'=>'false',
 				'url' => Yii::app()->createAbsoluteUrl('/donaciones/default/donanteCargar'),
-				'data' => array("documento" => "js: numdoc"),
+				'data' => array("documento" => "js: numdoc", "tipo" => "donante"),
 				'update'=>'#donante_div',
 			)
 		); ?>
@@ -117,6 +155,62 @@
 			//$('#formularioDonante').removeClass('show');
 		}
 		$('#formularioDonante').collapse();
+		
+		$.get(
+			'<?php echo Yii::app()->createAbsoluteUrl('/donaciones/default/donanteTipo') ?>', 
+			{documento: numdoc}, 
+			function(r) {
+				if(r == 2){
+					var c = $('#representante').attr('class');
+					if(c == 'form-row collapse'){
+						$('#representante').addClass('show');
+					}
+					else{
+						//$('#formularioDonante').removeClass('show');
+					}
+					$('#representante').collapse();	
+				}
+				else{
+					$('#id_representante').val("");
+					$('#representante').removeClass('show');
+				}
+			}
+		);
+	}
+	
+	function mostrarRepresentante(){
+		var numdoc = $('#id_representante').val();
+		
+		$.get(
+			'<?php echo Yii::app()->createAbsoluteUrl('/donaciones/default/donanteTipo') ?>', 
+			{documento: numdoc}, 
+			function(r) {
+				if(r == 2){
+					alert("El representante legal de una donación debe ser una persona natural");
+				}
+				else{
+					<?php echo CHtml::ajax(
+						array(
+							'type'=>'GET',
+							'dataType'=>'html',
+							'async'=>'false',
+							'url' => Yii::app()->createAbsoluteUrl('/donaciones/default/donanteCargar'),
+							'data' => array("documento" => "js: numdoc", "tipo" => "representante"),
+							'update'=>'#representante_div',
+						)
+					); ?>
+
+					var c = $('#formularioRepresentante').attr('class');
+					if(c == 'col-md-12 collapse'){
+						$('#formularioRepresentante').addClass('show');
+					}
+					else{
+						//$('#formularioDonante').removeClass('show');
+					}
+					$('#formularioRepresentante').collapse();					
+				}
+			}
+		);
 	}
 	
 	function createOption(ddl, text, value) {

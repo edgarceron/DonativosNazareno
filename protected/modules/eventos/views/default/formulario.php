@@ -29,20 +29,20 @@ $this->breadcrumbs=array(
 
 				<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-				<?php echo $form->errorSummary($model); ?>
+				<?php echo $form->errorSummary($model, null, null, array('style' => 'color : #F00')); ?>
 
 				<div class="col-sm-4">
 				<div class="form-group">
 					<?php echo $form->labelEx($model,'nombre_evento',array('class'=>'label label-success')); ?>
 					<?php echo $form->textField($model,'nombre_evento',array('class'=>'form-control')); ?>
-					<?php echo $form->error($model,'nombre_evento'); ?>
+					<?php echo $form->error($model,'nombre_evento', array('style' => 'color : #F00')); ?>
 				</div>
 				</div>
 				<div class="col-sm-4">
 				<div class="form-group">
 					<?php echo $form->labelEx($model,'fecha_evento',array('class'=>'label label-success')); ?>
 					<?php echo $form->dateField($model,'fecha_evento',array('class'=>'form-control')); ?>
-					<?php echo $form->error($model,'fecha_evento'); ?>
+					<?php echo $form->error($model,'fecha_evento', array('style' => 'color : #F00')); ?>
 				</div>
 				</div>
 				<div class="col-sm-12">
