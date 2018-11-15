@@ -114,43 +114,43 @@ class DefaultController extends Controller
                             ),
 			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
                                 'actions' => array('crear'),
-                                'expression' => array(__CLASS__,'allowIndex'),
+                                'expression' => array(__CLASS__,'allowCrear'),
                             ),
 			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
                                 'actions' => array('vista'),
-                                'expression' => array(__CLASS__,'allowIndex'),
+                                'expression' => array(__CLASS__,'allowVista'),
                             ),
 			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
                                 'actions' => array('guardar'),
-                                'expression' => array(__CLASS__,'allowIndex'),
+                                'expression' => array(__CLASS__,'allowGuardar'),
                             ),
 			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
                                 'actions' => array('editar'),
-                                'expression' => array(__CLASS__,'allowIndex'),
+                                'expression' => array(__CLASS__,'allowEditar'),
                             ),
 			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
                                 'actions' => array('lista'),
-                                'expression' => array(__CLASS__,'allowIndex'),
+                                'expression' => array(__CLASS__,'allowLista'),
                             ),
 			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
                                 'actions' => array('eliminar'),
-                                'expression' => array(__CLASS__,'allowIndex'),
+                                'expression' => array(__CLASS__,'allowEliminar'),
                             ),
 			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
                                 'actions' => array('certificado'),
-                                'expression' => array(__CLASS__,'allowIndex'),
+                                'expression' => array(__CLASS__,'allowCertificado'),
                             ),
 			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
                                 'actions' => array('reporte'),
-                                'expression' => array(__CLASS__,'allowIndex'),
+                                'expression' => array(__CLASS__,'allowReporte'),
                             ),
 			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
                                 'actions' => array('consolidado'),
-                                'expression' => array(__CLASS__,'allowIndex'),
+                                'expression' => array(__CLASS__,'allowConsolidado'),
                             ),
 			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
                                 'actions' => array('donantesTipo'),
-                                'expression' => array(__CLASS__,'allowIndex'),
+                                'expression' => array(__CLASS__,'allowDonantesTipo'),
                             ),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -161,7 +161,6 @@ class DefaultController extends Controller
         
     public function allowIndex()
 	{
-		/*
 		$accion = 'index'; //Cambiar esto cada ves que lo copie para una accion diferente
 		if(Yii::app()->user->name != "Guest"){
 			$usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
@@ -192,8 +191,346 @@ class DefaultController extends Controller
 		{
 			return false;
 		}
-		*/
-		return true;
+	}
+	
+	public function allowCrear()
+	{
+		$accion = 'crear'; //Cambiar esto cada ves que lo copie para una accion diferente
+		if(Yii::app()->user->name != "Guest"){
+			$usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
+			$criteria = new CDbCriteria();            
+			$modulo = 'donantes';
+			$criteria->compare('perfil', $usuario->perfil);
+			$criteria->compare('modulo', $modulo);
+			$criteria->compare('accion', $accion);
+			$permisos = PerfilContenido::model()->find($criteria);
+			if(count($permisos) == 1)
+			{
+				$criteria_log = new CDbCriteria();
+				$criteria_log->compare('modulo', $modulo);
+				$criteria_log->compare('accion', $accion); 
+				$accion_log = Acciones::model()->find($criteria_log);
+				$log = new Logs;
+				$log->accion = $accion_log->id;
+				$log->usuario = Yii::app()->user->id;
+				$log->save();
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public function allowVista()
+	{
+		$accion = 'vista'; 
+		if(Yii::app()->user->name != "Guest"){
+			$usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
+			$criteria = new CDbCriteria();            
+			$modulo = 'donantes';
+			$criteria->compare('perfil', $usuario->perfil);
+			$criteria->compare('modulo', $modulo);
+			$criteria->compare('accion', $accion);
+			$permisos = PerfilContenido::model()->find($criteria);
+			if(count($permisos) == 1)
+			{
+				$criteria_log = new CDbCriteria();
+				$criteria_log->compare('modulo', $modulo);
+				$criteria_log->compare('accion', $accion); 
+				$accion_log = Acciones::model()->find($criteria_log);
+				$log = new Logs;
+				$log->accion = $accion_log->id;
+				$log->usuario = Yii::app()->user->id;
+				$log->save();
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public function allowGuardar()
+	{
+		$accion = 'guardar'; 
+		if(Yii::app()->user->name != "Guest"){
+			$usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
+			$criteria = new CDbCriteria();            
+			$modulo = 'donantes';
+			$criteria->compare('perfil', $usuario->perfil);
+			$criteria->compare('modulo', $modulo);
+			$criteria->compare('accion', $accion);
+			$permisos = PerfilContenido::model()->find($criteria);
+			if(count($permisos) == 1)
+			{
+				$criteria_log = new CDbCriteria();
+				$criteria_log->compare('modulo', $modulo);
+				$criteria_log->compare('accion', $accion); 
+				$accion_log = Acciones::model()->find($criteria_log);
+				$log = new Logs;
+				$log->accion = $accion_log->id;
+				$log->usuario = Yii::app()->user->id;
+				$log->save();
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public function allowEditar()
+	{
+		$accion = 'guardar'; 
+		if(Yii::app()->user->name != "Guest"){
+			$usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
+			$criteria = new CDbCriteria();            
+			$modulo = 'donantes';
+			$criteria->compare('perfil', $usuario->perfil);
+			$criteria->compare('modulo', $modulo);
+			$criteria->compare('accion', $accion);
+			$permisos = PerfilContenido::model()->find($criteria);
+			if(count($permisos) == 1)
+			{
+				$criteria_log = new CDbCriteria();
+				$criteria_log->compare('modulo', $modulo);
+				$criteria_log->compare('accion', $accion); 
+				$accion_log = Acciones::model()->find($criteria_log);
+				$log = new Logs;
+				$log->accion = $accion_log->id;
+				$log->usuario = Yii::app()->user->id;
+				$log->save();
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public function allowLista()
+	{
+		$accion = 'lista'; 
+		if(Yii::app()->user->name != "Guest"){
+			$usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
+			$criteria = new CDbCriteria();            
+			$modulo = 'donantes';
+			$criteria->compare('perfil', $usuario->perfil);
+			$criteria->compare('modulo', $modulo);
+			$criteria->compare('accion', $accion);
+			$permisos = PerfilContenido::model()->find($criteria);
+			if(count($permisos) == 1)
+			{
+				$criteria_log = new CDbCriteria();
+				$criteria_log->compare('modulo', $modulo);
+				$criteria_log->compare('accion', $accion); 
+				$accion_log = Acciones::model()->find($criteria_log);
+				$log = new Logs;
+				$log->accion = $accion_log->id;
+				$log->usuario = Yii::app()->user->id;
+				$log->save();
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public function allowEliminar()
+	{
+		$accion = 'eliminar'; 
+		if(Yii::app()->user->name != "Guest"){
+			$usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
+			$criteria = new CDbCriteria();            
+			$modulo = 'donantes';
+			$criteria->compare('perfil', $usuario->perfil);
+			$criteria->compare('modulo', $modulo);
+			$criteria->compare('accion', $accion);
+			$permisos = PerfilContenido::model()->find($criteria);
+			if(count($permisos) == 1)
+			{
+				$criteria_log = new CDbCriteria();
+				$criteria_log->compare('modulo', $modulo);
+				$criteria_log->compare('accion', $accion); 
+				$accion_log = Acciones::model()->find($criteria_log);
+				$log = new Logs;
+				$log->accion = $accion_log->id;
+				$log->usuario = Yii::app()->user->id;
+				$log->save();
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public function allowCertificado()
+	{
+		$accion = 'certificado'; 
+		if(Yii::app()->user->name != "Guest"){
+			$usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
+			$criteria = new CDbCriteria();            
+			$modulo = 'donantes';
+			$criteria->compare('perfil', $usuario->perfil);
+			$criteria->compare('modulo', $modulo);
+			$criteria->compare('accion', $accion);
+			$permisos = PerfilContenido::model()->find($criteria);
+			if(count($permisos) == 1)
+			{
+				$criteria_log = new CDbCriteria();
+				$criteria_log->compare('modulo', $modulo);
+				$criteria_log->compare('accion', $accion); 
+				$accion_log = Acciones::model()->find($criteria_log);
+				$log = new Logs;
+				$log->accion = $accion_log->id;
+				$log->usuario = Yii::app()->user->id;
+				$log->save();
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public function allowReporte()
+	{
+		$accion = 'reporte'; 
+		if(Yii::app()->user->name != "Guest"){
+			$usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
+			$criteria = new CDbCriteria();            
+			$modulo = 'donantes';
+			$criteria->compare('perfil', $usuario->perfil);
+			$criteria->compare('modulo', $modulo);
+			$criteria->compare('accion', $accion);
+			$permisos = PerfilContenido::model()->find($criteria);
+			if(count($permisos) == 1)
+			{
+				$criteria_log = new CDbCriteria();
+				$criteria_log->compare('modulo', $modulo);
+				$criteria_log->compare('accion', $accion); 
+				$accion_log = Acciones::model()->find($criteria_log);
+				$log = new Logs;
+				$log->accion = $accion_log->id;
+				$log->usuario = Yii::app()->user->id;
+				$log->save();
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public function allowConsolidado()
+	{
+		$accion = 'consolidado'; 
+		if(Yii::app()->user->name != "Guest"){
+			$usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
+			$criteria = new CDbCriteria();            
+			$modulo = 'donantes';
+			$criteria->compare('perfil', $usuario->perfil);
+			$criteria->compare('modulo', $modulo);
+			$criteria->compare('accion', $accion);
+			$permisos = PerfilContenido::model()->find($criteria);
+			if(count($permisos) == 1)
+			{
+				$criteria_log = new CDbCriteria();
+				$criteria_log->compare('modulo', $modulo);
+				$criteria_log->compare('accion', $accion); 
+				$accion_log = Acciones::model()->find($criteria_log);
+				$log = new Logs;
+				$log->accion = $accion_log->id;
+				$log->usuario = Yii::app()->user->id;
+				$log->save();
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public function allowDonantesTipo()
+	{
+		$accion = 'donantesTipo'; 
+		if(Yii::app()->user->name != "Guest"){
+			$usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
+			$criteria = new CDbCriteria();            
+			$modulo = 'donantes';
+			$criteria->compare('perfil', $usuario->perfil);
+			$criteria->compare('modulo', $modulo);
+			$criteria->compare('accion', $accion);
+			$permisos = PerfilContenido::model()->find($criteria);
+			if(count($permisos) == 1)
+			{
+				$criteria_log = new CDbCriteria();
+				$criteria_log->compare('modulo', $modulo);
+				$criteria_log->compare('accion', $accion); 
+				$accion_log = Acciones::model()->find($criteria_log);
+				$log = new Logs;
+				$log->accion = $accion_log->id;
+				$log->usuario = Yii::app()->user->id;
+				$log->save();
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 }

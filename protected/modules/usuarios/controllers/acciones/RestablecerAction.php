@@ -3,7 +3,7 @@ class RestablecerAction extends CAction
 {
     public function run($id)
     {
-        $usuario = Usuarios::getUsuario($id);
+        $usuario = SofintUsers::model()->findByPk($id);
 		$clave_temporal = rand(1000, 9999);
 		$usuario->password = md5($clave_temporal);
 		$usuario->restablecer = 1;
