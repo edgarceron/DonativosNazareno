@@ -1,6 +1,6 @@
 <html>
 	<head>
-	<title>Recordatorio de cita</title>
+	<title>Recuperar contraseña</title>
 	</head>
 	<body>
 		<div style="background: none repeat scroll 0 0 #FDD828;
@@ -21,8 +21,7 @@
 				<h3>Recuperación de contraseña </h3>
 				Sr. <?php echo $nombre; ?> </br>
 				Usted solicito un cambio de contraseña desde el aplicativo de donaciones de la iglesia Nazareno </br>
-				Ingerese a la siguiente url para proceder con la recuperación: </br>
-				<?php echo $url; ?>
+				Ingerese <a href="<?php echo $url; ?>">aquí</a> para proceder con la recuperación: </br>
 				
 		</div>
 

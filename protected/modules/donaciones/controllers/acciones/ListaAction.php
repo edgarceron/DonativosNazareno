@@ -39,7 +39,6 @@ class ListaAction extends CAction
 		
 		$eventos = $this->getEventos();
 			
-			
 		if(isset($_GET['evento'])){
 			$evento = $_GET['evento'];
 		}

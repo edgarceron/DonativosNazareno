@@ -142,12 +142,15 @@ class ReportePdfAction extends CAction
 	 */
 	
 	public function joinContents($record, $select){
-		$principal = $select['principal'];
-		$columns = $this->obtainContents($record, $principal);
-		unset($select['principal']);
+		$columns = array();
 		$relaciones = array_keys($select);
 		foreach($relaciones as $relacion){
-			$r = $record[$relacion];
+			if($relacion == 'principal'){
+				$r = $record;
+			}
+			else{
+				$r = $record[$relacion];
+			}
 			$s = $select[$relacion];
 			$columns = array_merge($columns, $this->obtainContents($r, $s));
 		}

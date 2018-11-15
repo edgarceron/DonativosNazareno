@@ -19,6 +19,18 @@
  */
 class Donantes extends CActiveRecord
 {
+	public $enero;
+	public $febrero;
+	public $marzo;
+	public $abril;
+	public $mayo;
+	public $junio;
+	public $julio;
+	public $agosto;
+	public $septiembre;
+	public $octubre;
+	public $noviembre;
+	public $diciembre;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -110,7 +122,7 @@ class Donantes extends CActiveRecord
 		));
 	}
 	
-	public function tiposDocumento(){
+	public static function tiposDocumento(){
 		return array('1' => 'Cedula de ciudadania', '2' => 'Nit', '3' => 'Pasaporte');
 	}
 

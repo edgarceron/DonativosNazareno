@@ -19,7 +19,7 @@ $this->breadcrumbs=array(
 			  
 			<?php $form=$this->beginWidget('CActiveForm', array(
 				'id'=>'eventos-eventos-form',
-				'action'=>Yii::app()->createAbsoluteUrl('/donaciones/default/lista'),
+				'action'=>Yii::app()->createAbsoluteUrl('/donantes/default/reporte'),
 				'method'=>'get',
 				// Please note: When you enable ajax validation, make sure the corresponding
 				// controller action is handling ajax validation correctly.
@@ -62,16 +62,14 @@ $this->breadcrumbs=array(
 						echo CHtml::link(
 
 							'Generar pdf', 
-							Yii::app()->createUrl("/donaciones/default/reportePdf", array(
-								'evento' => $evento,
+							Yii::app()->createUrl("/donantes/default/reporte", array(
 								'donante' => $donante,
-								'minimo' => $minimo,
-								'maximo' => $maximo,
 								'desde' => $desde,
 								'hasta' => $hasta,
+								'reporte' => 'pdf',
 							)), 
 							array(
-								'submit'=>array('/donaciones/default/reportePdf'),
+								'submit'=>array('/donantes/default/reportePdf'),
 								'class'=>'btn btn-primary form-control'
 							)
 						);
@@ -83,16 +81,14 @@ $this->breadcrumbs=array(
 						echo CHtml::link(
 
 							'Generar excel', 
-							Yii::app()->createUrl("/donaciones/default/reporteExcel", array(
-								'evento' => $evento,
+							Yii::app()->createUrl("/donantes/default/reporte", array(
 								'donante' => $donante,
-								'minimo' => $minimo,
-								'maximo' => $maximo,
 								'desde' => $desde,
 								'hasta' => $hasta,
+								'reporte' => 'excel',
 							)), 
 							array(
-								'submit'=>array('/donaciones/default/reportePdf'),
+								'submit'=>array('/donantes/default/reportePdf'),
 								'class'=>'btn btn-primary form-control'
 							)
 						);
@@ -126,11 +122,15 @@ $this->breadcrumbs=array(
 						"internalPageCssClass" => "page-item",
 					),
 					'columns'=>array(
-						'idDonanteDonacion.nombre_donante',	
-						'idDonanteDonacion.apellido_donante',
-						'idEvento.nombre_evento',
-						'idEvento.fecha_evento',
-						'valor_donacion',
+						
+						array(
+							'name' => 'idDonanteDonacion.nombre_donante',	
+							'value' => '$data->idDonanteDonacion->nombre_donante . " " . $data->idDonanteDonacion->apellido_donante',
+						),	
+						array(
+							"name" => "Total donaciones",
+							"value" => '$data->valor_donacion',
+						),
 						array
 						(
 							'class'=>'CButtonColumn',
@@ -141,13 +141,13 @@ $this->breadcrumbs=array(
 								(
 									'label'=>'Ver el evento',
 									'imageUrl'=>Yii::app()->request->baseUrl.'/images/view.png',
-									'url'=>'Yii::app()->createUrl("donaciones/default/vista", array("id"=>$data->id))',
+									'url'=>'Yii::app()->createUrl("donantes/default/vista", array("id"=>$data->id_donante_donacion, "desde" => "' . $desde . '", "hasta" => "' . $hasta . '"))',
 								),
 								'edit' => array
 								(
 									'label'=>'Editar el evento',
 									'imageUrl'=>Yii::app()->request->baseUrl.'/images/edit.png',
-									'url'=>'Yii::app()->createUrl("donaciones/default/editar", array("id"=>$data->id))',
+									'url'=>'Yii::app()->createUrl("donantes/default/editar", array("id"=>$data->id_donante_donacion, "desde" => "' . $desde . '", "hasta" => "' . $hasta . '"))',
 								),
 							),
 						)

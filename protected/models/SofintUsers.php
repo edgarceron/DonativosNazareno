@@ -38,7 +38,7 @@ class SofintUsers extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nick, password, nombre, apellido, email, perfil, estado, fecha_creacion', 'required'),
+			array('nick, password, nombre, apellido, perfil, email, estado, fecha_creacion', 'required'),
 			array('telefono, perfil, estado, fecha_creacion, restablecer, grupo', 'numerical', 'integerOnly'=>true),
 			array('nick', 'length', 'max'=>10),
 			array('password, foto', 'length', 'max'=>50),

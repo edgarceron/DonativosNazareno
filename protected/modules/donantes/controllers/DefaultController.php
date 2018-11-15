@@ -97,7 +97,10 @@ class DefaultController extends Controller
 			'guardar'=>'application.modules.'.$this->module->id.'.controllers.acciones.GuardarAction', 
 			'eliminar'=>'application.modules.'.$this->module->id.'.controllers.acciones.EliminarAction',  
 			'vista'=>'application.modules.'.$this->module->id.'.controllers.acciones.VistaAction',
+			'reporte'=>'application.modules.'.$this->module->id.'.controllers.acciones.DonantesPorFechaAction',
+			'donantesTipo'=>'application.modules.'.$this->module->id.'.controllers.acciones.DonantesTipoAction',
 			'certificado'=>'application.modules.'.$this->module->id.'.controllers.acciones.CertificadoAction',
+			'consolidado'=>'application.modules.'.$this->module->id.'.controllers.acciones.ConsolidadoAction',
 		);
 	}
         
@@ -135,6 +138,18 @@ class DefaultController extends Controller
                             ),
 			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
                                 'actions' => array('certificado'),
+                                'expression' => array(__CLASS__,'allowIndex'),
+                            ),
+			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('reporte'),
+                                'expression' => array(__CLASS__,'allowIndex'),
+                            ),
+			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('consolidado'),
+                                'expression' => array(__CLASS__,'allowIndex'),
+                            ),
+			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('donantesTipo'),
                                 'expression' => array(__CLASS__,'allowIndex'),
                             ),
 			array('deny',  // deny all users
