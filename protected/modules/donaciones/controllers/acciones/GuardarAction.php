@@ -144,5 +144,4 @@ class GuardarAction extends CAction
 		return $lista;
 	}
 }
-?>
 

@@ -41,4 +41,3 @@ class IndexAction extends CAction
             ));
     }
 }
-?>

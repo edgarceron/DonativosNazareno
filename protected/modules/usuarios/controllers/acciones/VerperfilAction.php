@@ -10,5 +10,4 @@ class VerperfilAction extends CAction
                                         ));
     }
 }
-?>
 

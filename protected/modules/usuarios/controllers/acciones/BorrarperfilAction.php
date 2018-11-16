@@ -6,5 +6,4 @@ class BorrarperfilAction extends CAction
         
     }
 }
-?>
 

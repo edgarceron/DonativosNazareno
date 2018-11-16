@@ -27,9 +27,8 @@
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="#">
-			<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/logogrupo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-			Sofint
+		<a class="navbar-brand" href="<?php echo Yii::app()->createUrl(Yii::app()->defaultController); ?>">
+			<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/Nazarene_logo_wide-spread.png"  height="50" class="d-inline-block align-top" alt="">
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>

@@ -11,4 +11,3 @@ class GrupoAction extends CAction
         }        
     }
 }
-?>

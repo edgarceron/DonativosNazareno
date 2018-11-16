@@ -52,5 +52,4 @@ class PerfilAction extends CAction
         $this->controller->redirect('index');
     }
 }
-?>
 

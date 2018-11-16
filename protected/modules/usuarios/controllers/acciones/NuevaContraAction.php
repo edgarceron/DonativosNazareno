@@ -98,4 +98,3 @@ class NuevaContraAction extends CAction
 		}
 	}
 }
-?>

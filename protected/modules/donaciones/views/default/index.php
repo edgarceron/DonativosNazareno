@@ -19,10 +19,10 @@ $this->breadcrumbs=array(
 			<div class="card-body">
 				<table class="table">
 					<tr>
-						<td><?php echo CHtml::button('Lista de donaciones', array('onclick' => 'js:document.location.href="'. Yii::app()->createUrl('/donaciones/default/lista'). '"', 'class' => 'btn btn-primary')); ?></th>
+						<td><?php echo CHtml::button('Lista de donaciones', array('onclick' => 'js:document.location.href="'. Yii::app()->createUrl('/donaciones/default/lista'). '"', 'class' => 'btn btn-primary form-control')); ?></th>
 					</tr>
 					<tr>
-						<td><?php echo CHtml::button('Nueva donación', array('onclick' => 'js:document.location.href="'. Yii::app()->createUrl('/donaciones/default/crear'). '"', 'class' => 'btn btn-primary')); ?></th>
+						<td><?php echo CHtml::button('Nueva donación', array('onclick' => 'js:document.location.href="'. Yii::app()->createUrl('/donaciones/default/crear'). '"', 'class' => 'btn btn-primary form-control')); ?></th>
 					</tr>
 				</table>
 			</div>

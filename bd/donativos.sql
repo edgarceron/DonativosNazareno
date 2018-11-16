@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2018 a las 20:40:18
+-- Tiempo de generación: 16-11-2018 a las 15:54:13
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 5.6.36
 
@@ -37,13 +37,6 @@ CREATE TABLE `donaciones` (
   `validez_donacion` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `donaciones`
---
-
-INSERT INTO `donaciones` (`id`, `id_evento`, `id_donante_donacion`, `id_representante_donacion`, `valor_donacion`, `validez_donacion`) VALUES
-(1, 1, 1, NULL, '10000', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -61,13 +54,6 @@ CREATE TABLE `donantes` (
   `telefono_donante` varchar(14) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `donantes`
---
-
-INSERT INTO `donantes` (`id`, `tipo_documento_donante`, `numero_documento_donante`, `nombre_donante`, `apellido_donante`, `direccion_donante`, `correo_donante`, `telefono_donante`) VALUES
-(1, 1, '1144166082', 'Edgar Mauricio', 'Ceron Florez', 'Calle 62B#1A9-205 Sec 4 Agrup 6 Apartamento 6E23', 'maurinin@yahoo.com', '3176483290');
-
 -- --------------------------------------------------------
 
 --
@@ -79,14 +65,6 @@ CREATE TABLE `eventos` (
   `nombre_evento` varchar(70) NOT NULL,
   `fecha_evento` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `eventos`
---
-
-INSERT INTO `eventos` (`id`, `nombre_evento`, `fecha_evento`) VALUES
-(1, 'Misa dominical', '2018-10-14'),
-(2, 'Misa dominical', '2018-10-07');
 
 --
 -- Índices para tablas volcadas
@@ -122,19 +100,19 @@ ALTER TABLE `eventos`
 -- AUTO_INCREMENT de la tabla `donaciones`
 --
 ALTER TABLE `donaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `donantes`
 --
 ALTER TABLE `donantes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Restricciones para tablas volcadas

@@ -39,5 +39,3 @@ class GuardarEventoAction extends CAction
 		}
     }
 }
-?>
-

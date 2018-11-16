@@ -15,5 +15,4 @@ class RestablecerAction extends CAction
 		$this->controller->redirect(Yii::app()->createAbsoluteUrl('/usuarios'));
     }
 }
-?>
 

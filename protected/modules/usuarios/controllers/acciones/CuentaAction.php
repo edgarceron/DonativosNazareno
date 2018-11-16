@@ -24,5 +24,4 @@ class CuentaAction extends CAction
 		));
     }
 }
-?>
 

@@ -15,5 +15,4 @@ class EditarAction extends CAction
         ));
     }
 }
-?>
 

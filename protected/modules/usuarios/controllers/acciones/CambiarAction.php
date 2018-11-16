@@ -47,4 +47,3 @@ class CambiarAction extends CAction
 		}
 	}	
 }
-?>

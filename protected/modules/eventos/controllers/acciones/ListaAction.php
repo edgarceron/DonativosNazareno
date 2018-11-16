@@ -58,5 +58,4 @@ class ListaAction extends CAction
         ));
     }
 }
-?>
 

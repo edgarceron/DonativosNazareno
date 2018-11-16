@@ -26,4 +26,3 @@ class CreateAction extends CAction
             $this->controller->render('_form',array('model'=>$model));
     }
 }
-?>

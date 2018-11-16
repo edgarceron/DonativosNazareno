@@ -38,5 +38,3 @@ class DonanteCargarAction extends CAction
         ));
     }
 }
-?>
-

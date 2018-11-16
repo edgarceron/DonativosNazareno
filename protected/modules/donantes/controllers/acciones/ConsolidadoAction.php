@@ -365,5 +365,4 @@ class ConsolidadoAction extends CAction
 		
 	}
 }
-?>
 

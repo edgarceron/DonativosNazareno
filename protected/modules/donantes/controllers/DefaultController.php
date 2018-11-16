@@ -2,7 +2,7 @@
 
 class DefaultController extends Controller
 {
-	public function beforeAction() 
+	public function beforeAction($action) 
 	{
 		$modulo = $this->module->id;
 		$cri_val = new CDbCriteria();
@@ -159,7 +159,7 @@ class DefaultController extends Controller
 		);
 	}
         
-    public function allowIndex()
+    public static function allowIndex()
 	{
 		$accion = 'index'; //Cambiar esto cada ves que lo copie para una accion diferente
 		if(Yii::app()->user->name != "Guest"){
@@ -193,7 +193,7 @@ class DefaultController extends Controller
 		}
 	}
 	
-	public function allowCrear()
+	public static function allowCrear()
 	{
 		$accion = 'crear'; //Cambiar esto cada ves que lo copie para una accion diferente
 		if(Yii::app()->user->name != "Guest"){
@@ -227,7 +227,7 @@ class DefaultController extends Controller
 		}
 	}
 	
-	public function allowVista()
+	public static function allowVista()
 	{
 		$accion = 'vista'; 
 		if(Yii::app()->user->name != "Guest"){
@@ -261,7 +261,7 @@ class DefaultController extends Controller
 		}
 	}
 	
-	public function allowGuardar()
+	public static function allowGuardar()
 	{
 		$accion = 'guardar'; 
 		if(Yii::app()->user->name != "Guest"){
@@ -295,7 +295,7 @@ class DefaultController extends Controller
 		}
 	}
 	
-	public function allowEditar()
+	public static function allowEditar()
 	{
 		$accion = 'guardar'; 
 		if(Yii::app()->user->name != "Guest"){
@@ -329,7 +329,7 @@ class DefaultController extends Controller
 		}
 	}
 	
-	public function allowLista()
+	public static function allowLista()
 	{
 		$accion = 'lista'; 
 		if(Yii::app()->user->name != "Guest"){
@@ -363,7 +363,7 @@ class DefaultController extends Controller
 		}
 	}
 	
-	public function allowEliminar()
+	public static function allowEliminar()
 	{
 		$accion = 'eliminar'; 
 		if(Yii::app()->user->name != "Guest"){
@@ -397,7 +397,7 @@ class DefaultController extends Controller
 		}
 	}
 	
-	public function allowCertificado()
+	public static function allowCertificado()
 	{
 		$accion = 'certificado'; 
 		if(Yii::app()->user->name != "Guest"){
@@ -431,7 +431,7 @@ class DefaultController extends Controller
 		}
 	}
 	
-	public function allowReporte()
+	public static function allowReporte()
 	{
 		$accion = 'reporte'; 
 		if(Yii::app()->user->name != "Guest"){
@@ -465,7 +465,7 @@ class DefaultController extends Controller
 		}
 	}
 	
-	public function allowConsolidado()
+	public static function allowConsolidado()
 	{
 		$accion = 'consolidado'; 
 		if(Yii::app()->user->name != "Guest"){
@@ -499,7 +499,7 @@ class DefaultController extends Controller
 		}
 	}
 	
-	public function allowDonantesTipo()
+	public static function allowDonantesTipo()
 	{
 		$accion = 'donantesTipo'; 
 		if(Yii::app()->user->name != "Guest"){

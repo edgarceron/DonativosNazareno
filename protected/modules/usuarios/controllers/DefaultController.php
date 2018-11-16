@@ -2,7 +2,7 @@
 
 class DefaultController extends Controller
 {
-        public function beforeAction() 
+        public function beforeAction($action) 
         {
             
              $acciones = Yii::app()->getController()->actions();
@@ -116,7 +116,7 @@ class DefaultController extends Controller
 		);
 	}
         
-        public function allowIndex()
+    public static function allowIndex()
 	{
             if(Yii::app()->user->name != "Guest"){
                 $usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
@@ -141,7 +141,7 @@ class DefaultController extends Controller
             }
         }                                      
         
-        public function allowView()
+    public static function allowView()
 	{
             if(Yii::app()->user->name != "Guest"){
             $usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
@@ -162,7 +162,7 @@ class DefaultController extends Controller
             }
         } 
         
-        public function allowCreate()
+    public static function allowCreate()
 	{
             if(Yii::app()->user->name != "Guest"){
             $usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
@@ -183,7 +183,7 @@ class DefaultController extends Controller
             }
         } 
         
-        public function allowBorrar()
+    public static function allowBorrar()
 	{
             if(Yii::app()->user->name != "Guest"){
             $usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
@@ -204,7 +204,7 @@ class DefaultController extends Controller
             }
         } 
         
-        public function allowPerfil()
+    public static function allowPerfil()
 	{
             if(Yii::app()->user->name != "Guest"){
             $usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
@@ -225,7 +225,7 @@ class DefaultController extends Controller
             }
         } 
         
-        public function allowVerperfil()
+    public static function allowVerperfil()
 	{
             if(Yii::app()->user->name != "Guest"){
             $usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
@@ -247,7 +247,7 @@ class DefaultController extends Controller
 			
         } 
         
-        public function allowBorrarperfil()
+    public static function allowBorrarperfil()
 	{
             if(Yii::app()->user->name != "Guest"){
             $usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
@@ -268,7 +268,7 @@ class DefaultController extends Controller
             }
         } 
         
-    public function allowGrupo()
+    public static function allowGrupo()
 	{
         if(Yii::app()->user->name != "Guest"){
             $usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
@@ -289,7 +289,7 @@ class DefaultController extends Controller
         }
     } 
 	
-	public function allowRestablecer()
+	public static function allowRestablecer()
 	{
         if(Yii::app()->user->name != "Guest"){
             $usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
@@ -310,7 +310,7 @@ class DefaultController extends Controller
         }
     } 
 	
-	public function allowCambiar()
+	public static function allowCambiar()
 	{
         if(Yii::app()->user->name != "Guest"){
             $usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
@@ -331,7 +331,7 @@ class DefaultController extends Controller
         }
     }
 	
-	public function allowCuenta()
+	public static function allowCuenta()
 	{
         if(Yii::app()->user->name != "Guest"){
             $usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
@@ -352,12 +352,12 @@ class DefaultController extends Controller
         }
     }
     
-	public function allowNuevaContra()
+	public static function allowNuevaContra()
 	{
 		return true;
 	}
 	
-	public function allowRecuperar()
+	public static function allowRecuperar()
 	{
 		return true;
 	}

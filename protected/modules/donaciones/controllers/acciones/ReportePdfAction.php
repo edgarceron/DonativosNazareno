@@ -302,5 +302,4 @@ class ReportePdfAction extends CAction
 		return $criteria;
 	}
 }
-?>
 

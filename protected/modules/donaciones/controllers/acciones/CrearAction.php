@@ -108,5 +108,4 @@ class CrearAction extends CAction
 		return $lista;
 	}
 }
-?>
 

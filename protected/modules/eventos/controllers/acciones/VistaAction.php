@@ -28,5 +28,4 @@ class VistaAction extends CAction
 		}
     }
 }
-?>
 

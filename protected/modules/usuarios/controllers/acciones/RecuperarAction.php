@@ -149,5 +149,4 @@ class RecuperarAction extends CAction
 	}
 	 
 }
-?>
 

@@ -265,5 +265,4 @@ class ReporteExcelAction extends CAction
 		return $criteria;
 	}
 }
-?>
 

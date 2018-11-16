@@ -2,7 +2,7 @@
 
 class DefaultController extends Controller
 {
-        public function beforeAction() 
+        public function beforeAction($action) 
         {
             
              $acciones = Yii::app()->getController()->actions();
@@ -27,7 +27,7 @@ class DefaultController extends Controller
                 return true;
         }
         
-         public function filters()
+    public function filters()
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
@@ -35,17 +35,17 @@ class DefaultController extends Controller
 		);
 	}
         
-        public function actions()
-        {
-            return array(                
-                'index'=>'application.modules.'.$this->module->id.'.controllers.acciones.IndexAction',
-                'registrarplugin'=>'application.modules.'.$this->module->id.'.controllers.acciones.RegistrarpluginAction',
-				'unregistrarplugin'=>'application.modules.'.$this->module->id.'.controllers.acciones.UnregistrarpluginAction',
-                
-            );
-        }
+	public function actions()
+	{
+		return array(                
+			'index'=>'application.modules.'.$this->module->id.'.controllers.acciones.IndexAction',
+			'registrarplugin'=>'application.modules.'.$this->module->id.'.controllers.acciones.RegistrarpluginAction',
+			'unregistrarplugin'=>'application.modules.'.$this->module->id.'.controllers.acciones.UnregistrarpluginAction',
+			
+		);
+	}
         
-        public function accessRules()
+    public function accessRules()
 	{
 		return array(	
                         				
@@ -60,7 +60,7 @@ class DefaultController extends Controller
 		);
 	}
         
-        public function allowIndex()
+    public static function allowIndex()
 	{		
 			
             $usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
@@ -82,23 +82,23 @@ class DefaultController extends Controller
 			
         }
         
-        public function allowRegistrarplugins()
+    public static function allowRegistrarplugins()
 	{					
-            $usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
-            $criteria = new CDbCriteria();            
-            $modulo = 'plugins';
-            $criteria->compare('perfil', $usuario->perfil);
-            $criteria->compare('modulo', $modulo);
-            $criteria->compare('accion', 'registrarplugins');
-            $permisos = PerfilContenido::model()->find($criteria);
-            if(count($permisos) == 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-			
-        }        	               
+		$usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
+		$criteria = new CDbCriteria();            
+		$modulo = 'plugins';
+		$criteria->compare('perfil', $usuario->perfil);
+		$criteria->compare('modulo', $modulo);
+		$criteria->compare('accion', 'registrarplugins');
+		$permisos = PerfilContenido::model()->find($criteria);
+		if(count($permisos) == 1)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		
+	}        	               
 }

@@ -192,5 +192,4 @@ class ListaAction extends CAction
 		return $lista;
 	}
 }
-?>
 

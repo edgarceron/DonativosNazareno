@@ -109,5 +109,4 @@ class CertificadoAction extends CAction
 		return $fecha;
 	}
 }
-?>
 

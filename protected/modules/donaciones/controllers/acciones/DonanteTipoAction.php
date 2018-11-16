@@ -25,5 +25,4 @@ class DonanteTipoAction extends CAction
 
     }
 }
-?>
 

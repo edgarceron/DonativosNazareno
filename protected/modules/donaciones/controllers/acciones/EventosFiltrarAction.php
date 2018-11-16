@@ -37,5 +37,4 @@ class EventosFiltrarAction extends CAction
         print_r(json_encode($lista));
     }
 }
-?>
 

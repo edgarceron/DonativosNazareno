@@ -2,32 +2,32 @@
 
 class DefaultController extends Controller
 {
-        public function beforeAction() 
-        {
-            
-             $acciones = Yii::app()->getController()->actions();
-             
+	public function beforeAction($action) 
+	{
+		
+		 $acciones = Yii::app()->getController()->actions();
+		 
 
-                foreach($acciones as $clave => $valor)    
-                {
-                    $cri_val = new CDbCriteria();
-                    $cri_val->compare('modulo', $this->module->id);
-                    $cri_val->compare('accion', $clave);
-                    $verificar = Acciones::model()->find($cri_val);
-                    if(empty($verificar))
-                    {
-                        $validacion = new Acciones;
-                        $validacion->modulo = $this->module->id;
-                        $validacion->accion = $clave;
-                        $validacion->ruta = $valor;
-                        $validacion->save();
-                    }                    
-                    
-                }
-                return true;
-        }
+			foreach($acciones as $clave => $valor)    
+			{
+				$cri_val = new CDbCriteria();
+				$cri_val->compare('modulo', $this->module->id);
+				$cri_val->compare('accion', $clave);
+				$verificar = Acciones::model()->find($cri_val);
+				if(empty($verificar))
+				{
+					$validacion = new Acciones;
+					$validacion->modulo = $this->module->id;
+					$validacion->accion = $clave;
+					$validacion->ruta = $valor;
+					$validacion->save();
+				}                    
+				
+			}
+			return true;
+	}
         
-        public function filters()
+    public function filters()
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
@@ -35,14 +35,14 @@ class DefaultController extends Controller
 		);
 	}
         
-        public function actions()
-        {
-            return array(
-                'index'=>'application.modules.'.$this->module->id.'.controllers.acciones.IndexAction',                            
-            );
-        }
+	public function actions()
+	{
+		return array(
+			'index'=>'application.modules.'.$this->module->id.'.controllers.acciones.IndexAction',                            
+		);
+	}
         
-        public function accessRules()
+    public function accessRules()
 	{
 		return array(	
                         				
@@ -57,7 +57,7 @@ class DefaultController extends Controller
 		);
 	}
         
-        public function allowIndex()
+    public static function allowIndex()
 	{
             $usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
             $criteria = new CDbCriteria();            

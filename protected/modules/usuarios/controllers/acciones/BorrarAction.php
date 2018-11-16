@@ -10,4 +10,3 @@ class BorrarAction extends CAction
         $this->controller->redirect(Yii::app()->createUrl('/usuarios/default/index'));
     }
 }
-?>

@@ -24,5 +24,4 @@ class ViewAction extends CAction
                     ));
     }
 }
-?>
 

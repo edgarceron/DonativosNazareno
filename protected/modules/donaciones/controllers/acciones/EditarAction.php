@@ -85,5 +85,4 @@ class EditarAction extends CAction
 		return $donante['numero_documento_donante'];
 	}
 }
-?>
 

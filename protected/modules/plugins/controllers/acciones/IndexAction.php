@@ -6,6 +6,5 @@ class IndexAction extends CAction
         $this->controller->render('index');
     }
 }
-?>
 
 

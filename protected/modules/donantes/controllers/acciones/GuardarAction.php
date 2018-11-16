@@ -59,5 +59,4 @@ class GuardarAction extends CAction
 		return false;
 	}
 }
-?>
 

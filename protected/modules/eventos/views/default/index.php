@@ -19,10 +19,10 @@ $this->breadcrumbs=array(
 			<div class="card-body">
 				<table class="table">
 					<tr>
-						<td><?php echo CHtml::button('Lista de eventos', array('onclick' => 'js:document.location.href="'. Yii::app()->request->baseUrl . '/index.php/eventos/default/lista"', 'class' => 'btn btn-primary')); ?></th>
+						<td><?php echo CHtml::button('Lista de eventos', array('onclick' => 'js:document.location.href="'. Yii::app()->request->baseUrl . '/index.php/eventos/default/lista"', 'class' => 'btn btn-primary form-control')); ?></th>
 					</tr>
 					<tr>
-						<td><?php echo CHtml::button('Nuevo evento', array('onclick' => 'js:document.location.href="'. Yii::app()->request->baseUrl . '/index.php/eventos/default/crear/"', 'class' => 'btn btn-primary')); ?></th>
+						<td><?php echo CHtml::button('Nuevo evento', array('onclick' => 'js:document.location.href="'. Yii::app()->request->baseUrl . '/index.php/eventos/default/crear/"', 'class' => 'btn btn-primary form-control')); ?></th>
 					</tr>
 				</table>
 			</div>
