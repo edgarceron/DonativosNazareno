@@ -115,7 +115,7 @@ $this->breadcrumbs=array(
 					<?php
 						echo CHtml::link(
 
-							'Generar excel', 
+							'Descargar excel', 
 							Yii::app()->createUrl("/donaciones/default/reporteExcel", array(
 								'evento' => $evento,
 								'donante' => $donante,

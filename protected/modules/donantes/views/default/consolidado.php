@@ -55,17 +55,12 @@ $this->breadcrumbs=array(
 				
 				<div class="form-row">
 					<div class="form-group col-md-4">
-						<?php echo CHtml::label('Dirrecciom', 'direccion'); ?>
-						<?php echo CHtml::textField('direccion',$direccion,array('id'=>'direccion', 'class'=>'form-control')); ?>
-					</div>	
-					
-					<div class="form-group col-md-4">
-						<?php echo CHtml::label('Correo electronico', 'correo'); ?>
+						<?php echo CHtml::label('Correo electrónico', 'correo'); ?>
 						<?php echo CHtml::textField('correo',$correo,array('id'=>'correo', 'class'=>'form-control')); ?>
 					</div>	
 					
 					<div class="form-group col-md-4">
-						<?php echo CHtml::label('telefono', 'telefono'); ?>
+						<?php echo CHtml::label('Teléfono', 'telefono'); ?>
 						<?php echo CHtml::textField('telefono',$telefono,array('id'=>'telefono', 'class'=>'form-control')); ?>
 					</div>	
 				</div>	

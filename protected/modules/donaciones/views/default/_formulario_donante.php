@@ -14,7 +14,7 @@
 
     <div class="form-group col-md-6">
 		<?php echo CHtml::activeLabelEx($model,'tipo_documento_donante',array()); ?>
-		<?php echo CHtml::activeDropDownList($model,'tipo_documento_donante', array('1' => 'Cedula de ciudadania', '2' => 'Nit', '3' => 'Pasaporte'),array('class'=>'form-control', 'id' => $tipo. "_tipo_documento_donante")); ?>
+		<?php echo CHtml::activeDropDownList($model,'tipo_documento_donante', array('1' => 'Cedula de ciudadania', '2' => 'Nit', '3' => 'Pasaporte'),array('class'=>'form-control', 'id' => $tipo. "_tipo_documento_donante", 'onchange' => 'verificarCampos()')); ?>
 		<?php echo CHtml::error($model,'tipo_documento_donante'); ?>
     </div>
     <div class="form-group col-md-6">
@@ -55,6 +55,20 @@
     </div>
 	
 	<script>
+	
+	
+	function verificarCampos(){
+		var tipdoc = $('<?php echo '#'. $tipo . '_tipo_documento_donante'?>').val();
+		var apellid = $('<?php echo '#'. $tipo . '_apellido_donante'?>');
+		if(tipdoc == 2){
+			apellid.val("");
+			apellid.prop('disabled', true);
+		}
+		else{
+			apellid.prop('disabled', false);
+		}
+	}
+	
 	function <?php echo 'guardar'. $tipo . '()'?>{
 		
 		var tipo_documento_donante = $('<?php echo '#'. $tipo . '_tipo_documento_donante'?>').val();

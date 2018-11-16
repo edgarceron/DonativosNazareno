@@ -66,8 +66,8 @@ class Donaciones extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'id_evento' => 'Evento',
-			'id_donante_donacion' => 'Donante',
-			'id_representante_donacion' => 'Representante Legal',
+			'id_donante_donacion' => 'Documento donante',
+			'id_representante_donacion' => 'Cedula del Representante Legal',
 			'valor_donacion' => 'Valor Donacion',
 			'validez_donacion' => 'Validez Donacion',
 		);
