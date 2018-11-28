@@ -76,6 +76,7 @@ class CrearAction extends CAction
 			'eventos' => $eventos,
 			'mensaje' => $mensaje,
 			'model' => $model,
+			'parametros_get' => '',
         ));
     }
 	

@@ -52,6 +52,7 @@ class EditarAction extends CAction
 			'eventos' => $eventos,
 			'mensaje' => $mensaje,
 			'model' => $model,
+			'parametros_get' => '?id=' . $id,
         ));
     }
 	

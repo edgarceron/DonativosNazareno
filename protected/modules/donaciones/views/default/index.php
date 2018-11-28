@@ -22,7 +22,7 @@ $this->breadcrumbs=array(
 						<td><?php echo CHtml::button('Consultar donaciones', array('onclick' => 'js:document.location.href="'. Yii::app()->createUrl('/donaciones/default/lista'). '"', 'class' => 'btn btn-primary form-control')); ?></th>
 					</tr>
 					<tr>
-						<td><?php echo CHtml::button('Nueva donación', array('onclick' => 'js:document.location.href="'. Yii::app()->createUrl('/donaciones/default/crear'). '"', 'class' => 'btn btn-primary form-control')); ?></th>
+						<td><?php echo CHtml::button('Nueva donación', array('onclick' => 'js:document.location.href="'. Yii::app()->createUrl('/donaciones/default/crear'). '"', 'class' => 'btn btn-secondary form-control')); ?></th>
 					</tr>
 				</table>
 			</div>

@@ -51,7 +51,7 @@ return array(
 		),
 		'maestros'=>array
 		(
-			'nombre'=>'Maestros',
+			'nombre'=>'Menu',
 			'modulo'=>'1',
 			'padre'=>'',
 			'desplegable' => true,

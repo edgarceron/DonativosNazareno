@@ -80,7 +80,7 @@ $this->breadcrumbs=array(
 					<?php
 						echo CHtml::link(
 
-							'Generar excel', 
+							'Descargar excel', 
 							Yii::app()->createUrl("/donantes/default/reporte", array(
 								'donante' => $donante,
 								'desde' => $desde,
@@ -122,7 +122,7 @@ $this->breadcrumbs=array(
 						"internalPageCssClass" => "page-item",
 					),
 					'columns'=>array(
-						
+						'idDonanteDonacion.numero_documento_donante',
 						array(
 							'name' => 'idDonanteDonacion.nombre_donante',	
 							'value' => '$data->idDonanteDonacion->nombre_donante . " " . $data->idDonanteDonacion->apellido_donante',
@@ -131,6 +131,9 @@ $this->breadcrumbs=array(
 							"name" => "Total donaciones",
 							"value" => '$data->valor_donacion',
 						),
+						'idDonanteDonacion.direccion_donante',
+						'idDonanteDonacion.correo_donante',
+						'idDonanteDonacion.telefono_donante',
 						array
 						(
 							'class'=>'CButtonColumn',

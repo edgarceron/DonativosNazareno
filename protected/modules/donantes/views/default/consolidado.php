@@ -108,7 +108,7 @@ $this->breadcrumbs=array(
 					<?php
 						echo CHtml::link(
 
-							'Generar excel', 
+							'Descargar excel', 
 							Yii::app()->createUrl("/donantes/default/consolidado", array(
 								'donante' => $donante,
 								'nombres' => $nombres,
@@ -157,12 +157,19 @@ $this->breadcrumbs=array(
 						"internalPageCssClass" => "page-item",
 					),
 					'columns'=>array(
-						
+						'numero_documento_donante',
 						array(
 							'name' => 'idDonanteDonacion.nombre_donante',	
 							'value' => '$data->nombre_donante . " " . $data->apellido_donante',
 							//'htmlOptions'=>array('style'=>'width:30%'),
-						),	
+						),
+						'direccion_donante',
+						array(
+							'name' => 'idDonanteDonacion.correo_donante',	
+							'value' => '$data->correo_donante',
+							//'htmlOptions'=>array('style'=>'width:30%'),
+						),
+						'telefono_donante',
 						'enero',
 						'febrero',
 						'marzo',
@@ -174,28 +181,7 @@ $this->breadcrumbs=array(
 						'septiembre',
 						'octubre',
 						'noviembre',
-						'diciembre',
-						array
-						(
-							'class'=>'CButtonColumn',
-							'template'=>'{view}{edit}' /* . '{delete}' */,
-							'buttons'=>array
-							(
-								'view' => array
-								(
-									'label'=>'Ver el evento',
-									'imageUrl'=>Yii::app()->request->baseUrl.'/images/view.png',
-									'url'=>'Yii::app()->createUrl("donantes/default/vista", array("id"=>$data->id))',
-								),
-								'edit' => array
-								(
-									'label'=>'Editar el evento',
-									'imageUrl'=>Yii::app()->request->baseUrl.'/images/edit.png',
-									'url'=>'Yii::app()->createUrl("donantes/default/editar", array("id"=>$data->id))',
-								),
-							),
-						)
-						
+						'diciembre',				
 					),
 				)
 			);			

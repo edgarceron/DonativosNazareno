@@ -6,7 +6,6 @@ class DonanteGuardarAction extends CAction
     {                           
         //Carga del modelo
 		$id = $_GET['id'];
-		
 		if($id != ''){
 			$model = Donantes::model()->findByPk($id);
 			$model->attributes = $_GET;
@@ -16,25 +15,35 @@ class DonanteGuardarAction extends CAction
 			$model = new Donantes;
 			$model->attributes = $_GET;
 		}
+		
+		$model->nombre_donante = strtoupper($model->nombre_donante);
+		$model->apellido_donante = strtoupper($model->apellido_donante);
+		$model->direccion_donante = strtoupper($model->direccion_donante);
+		$model->correo_donante = strtoupper($model->correo_donante);
+		
+		if($model->tipo_documento_donante == 2){
+			$documento = $model->numero_documento_donante;
+			$aux = explode('-', $documento);
+			if(count($aux) == 2){
+				$digito = $aux[1];
+				if(!(is_numeric($digito) && (strlen($digito) == 1))){
+					print("Error en el digito de verificación");
+					exit;
+				}
+			}
+			else{
+				print("Ingrese el digito de verificación");
+				exit;
+			}
+		}
 		//Guardado
 		if($model->save()){
 			$id = $model['id'];
 			print("Guardado existosamente");
-			/*
-			$this->controller->redirect(array(
-				'vista', 'id' => $id
-			));*/
 		}
 		else{
 			print("Error al guardar");
 			print_r($model);
-			/*
-			$this->controller->render('formulario',array(
-				'icono' => $icono,
-				'texto_boton' => $texto_boton,
-				'parametros_get' => '',
-				'model' => $model,
-			));*/
 		}
     }
 }

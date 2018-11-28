@@ -73,6 +73,7 @@
 		
 		var tipo_documento_donante = $('<?php echo '#'. $tipo . '_tipo_documento_donante'?>').val();
 		var numero_documento_donante = $('<?php echo '#'. $tipo . '_numero_documento_donante'?>').val();
+		
 		var nombre_donante = $('<?php echo '#'. $tipo . '_nombre_donante'?>').val();
 		var apellido_donante = $('<?php echo '#'. $tipo . '_apellido_donante'?>').val();
 		var direccion_donante = $('<?php echo '#'. $tipo . '_direccion_donante'?>').val();
@@ -95,7 +96,7 @@
 			function(r) {
 				$('#<?php echo $tipo; ?>_label_mensaje').empty();
 				$('#<?php echo $tipo; ?>_label_mensaje').append(r);
-				//alert(r);
+				if(r == "Guardado existosamente")	$('#id_donante').val(numero_documento_donante);
 			}
 		);
 		

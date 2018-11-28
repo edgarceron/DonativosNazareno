@@ -61,7 +61,7 @@ class ConsolidadoAction extends CAction
 			if($donaciones){
 				$mesesN=array(1=>"enero","febrero","marzo","abril","mayo","junio","julio",
 					"agosto","septiembre","octubre","noviembre","diciembre");
-				$columnas = array_merge(array('nombre_donante', 'apellido_donante'), $mesesN);
+				$columnas = array_merge(array('numero_documento_donante','nombre_donante', 'apellido_donante', 'direccion_donante', 'correo_donante', 'telefono_donante'), $mesesN);
 				$select = array(
 					"principal" => $columnas );
 				$tabla = $this->arrayTable($donaciones, $select);
@@ -256,7 +256,7 @@ class ConsolidadoAction extends CAction
 			 
 		$criteria = new CDbCriteria();
 		$model = new Donantes;
-		$select = "id AS idDonante , numero_documento_donante, nombre_donante, apellido_donante";
+		$select = "id AS idDonante , numero_documento_donante, nombre_donante, apellido_donante, direccion_donante, correo_donante, telefono_donante";
 		for($month = 1; $month < count($mesesN) + 1; $month++){
 			$day = cal_days_in_month(CAL_GREGORIAN, $month, $this->year);
 			$fecha_inicio = $this->year . "-" . $month . "-1";

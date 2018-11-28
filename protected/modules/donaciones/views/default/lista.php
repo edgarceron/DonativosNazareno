@@ -61,6 +61,18 @@ $this->breadcrumbs=array(
 				
 				<div class="form-row">
 					<div class="form-group col-md-6">
+						<?php echo CHtml::label('Nombres', 'nombres'); ?>
+						<?php echo CHtml::textField('nombres',$nombres,array('id'=>'nombres', 'class'=>'form-control')); ?>
+					</div>	
+					
+					<div class="form-group col-md-6">
+						<?php echo CHtml::label('Apellidos', 'apellidos'); ?>
+						<?php echo CHtml::textField('apellidos',$apellidos,array('id'=>'apellidos', 'class'=>'form-control')); ?>
+					</div>	
+				</div>	 
+				
+				<div class="form-row">
+					<div class="form-group col-md-6">
 						<?php echo CHtml::label('Valor donación desde', 'minimo'); ?>
 						<?php echo CHtml::textField('minimo',$minimo,array('id'=>'minimo', 'class'=>'form-control')); ?>
 					</div>	

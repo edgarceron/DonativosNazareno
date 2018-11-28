@@ -53,6 +53,20 @@ class ListaAction extends CAction
 			$donante = '';
 		}
 		
+		if(isset($_GET['nombres'])){
+			$nombres = $_GET['nombres'];
+		}
+		else{
+			$nombres = '';
+		}
+		
+		if(isset($_GET['apellidos'])){
+			$apellidos = $_GET['apellidos'];
+		}
+		else{
+			$apellidos = '';
+		}
+		
 		if(isset($_GET['minimo'])){
 			$minimo = $_GET['minimo'];
 		}
@@ -98,9 +112,6 @@ class ListaAction extends CAction
 				'together' => true,
 				'select' => array('t1.nombre_donante', 't1.apellido_donante'),
 			),
-		);
-		
-		$criteria->with = array(
 			'idEvento' => array(
 				'alias'=> 't2', 
 				'together' => true,
@@ -155,12 +166,21 @@ class ListaAction extends CAction
 			$criteria->addCondition('t2.fecha_evento < "'.$hasta.'"');
 		}
 		
+		if($nombres != ''){
+			$criteria->addCondition('t1.nombre_donante LIKE "%'. $nombres . '%"');
+		}
+		
+		if($apellidos != ''){
+			$criteria->addCondition('t1.apellido_donante LIKE "%'. $apellidos . '%"');
+		}
 		
         $reporte = new CActiveDataProvider($model, array('criteria' => $criteria));
 		
         $this->controller->render('lista',array(
 			'evento' => $evento,
 			'donante' => $donante,
+			'nombres' => $nombres,
+			'apellidos' => $apellidos,
 			'minimo' => $minimo,
 			'maximo' => $maximo,
 			'desde' => $desde,

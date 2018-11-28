@@ -21,7 +21,7 @@ class GuardarEventoAction extends CAction
 		
 		//Añadiendo datos al modelo
 		$model->attributes=$_POST['Eventos'];
-		
+		$model->nombre_evento = strtoupper($model->nombre_evento);
 		//Guardado
 		if($model->save()){
 			$id = $model['id'];

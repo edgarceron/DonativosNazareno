@@ -36,7 +36,7 @@ class DonantesPorFechaAction extends CAction
 			$donaciones = Donaciones::model()->findAll($criteria);
 			if($donaciones){
 				$select = array(
-					"idDonanteDonacion" => array('numero_documento_donante', 'nombre_donante', 'apellido_donante'),
+					"idDonanteDonacion" => array('numero_documento_donante', 'nombre_donante', 'apellido_donante', 'direccion_donante', 'correo_donante', 'telefono_donante'),
 					"idEvento" => array(),
 					"principal" => array('valor_donacion'));
 				$tabla = $this->htmlTable($donaciones, $select);
@@ -55,7 +55,7 @@ class DonantesPorFechaAction extends CAction
 			$donaciones = Donaciones::model()->findAll($criteria);
 			if($donaciones){
 				$select = array(
-					"idDonanteDonacion" => array('nombre_donante', 'apellido_donante'),
+					"idDonanteDonacion" => array('numero_documento_donante','nombre_donante', 'apellido_donante', 'direccion_donante', 'correo_donante', 'telefono_donante'),
 					"idEvento" => array(),
 					"principal" => array('valor_donacion') );
 				$tabla = $this->arrayTable($donaciones, $select);
@@ -86,11 +86,8 @@ class DonantesPorFechaAction extends CAction
 			'idDonanteDonacion' => array(
 				'alias'=> 't1', 
 				'together' => true,
-				'select' => array('t1.nombre_donante', 't1.apellido_donante'),
+				'select' => array('t1.numero_documento_donante', 't1.nombre_donante', 't1.apellido_donante', 't1.direccion_donante', 't1.correo_donante', 't1.telefono_donante'),
 			),
-		);
-		
-		$criteria->with = array(
 			'idEvento' => array(
 				'alias'=> 't2', 
 				'together' => true,

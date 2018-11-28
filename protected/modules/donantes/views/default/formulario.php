@@ -74,6 +74,13 @@
 			apellid.prop('disabled', false);
 		}
 	}
+	
+	window.onload = function load(){
+		var t = $('#tipo_documento').val();
+		if(t == 2){
+			$('#apellido_donante').prop('disabled', true);
+		}
+	}
 </script>
 
 <!-- form -->

@@ -22,13 +22,13 @@ $this->breadcrumbs=array(
 						<td><?php echo CHtml::button('Lista de donantes', array('onclick' => 'js:document.location.href="'. Yii::app()->createUrl('/donantes/default/lista'). '"', 'class' => 'btn btn-primary form-control')); ?></th>
 					</tr>
 					<tr>
-						<td><?php echo CHtml::button('Nuevo donante', array('onclick' => 'js:document.location.href="'. Yii::app()->createUrl('/donantes/default/crear'). '"', 'class' => 'btn btn-primary form-control')); ?></th>
+						<td><?php echo CHtml::button('Nuevo donante', array('onclick' => 'js:document.location.href="'. Yii::app()->createUrl('/donantes/default/crear'). '"', 'class' => 'btn btn-secondary form-control')); ?></th>
 					</tr>
 					<tr>
 						<td><?php echo CHtml::button('Donaciones por tipo de donante', array('onclick' => 'js:document.location.href="'. Yii::app()->createUrl('/donantes/default/donantesTipo'). '"', 'class' => 'btn btn-primary form-control')); ?></th>
 					</tr>
 					<tr>
-						<td><?php echo CHtml::button('Reporte de donantes por fecha', array('onclick' => 'js:document.location.href="'. Yii::app()->createUrl('/donantes/default/reporte'). '"', 'class' => 'btn btn-primary form-control')); ?></th>
+						<td><?php echo CHtml::button('Reporte de donantes por fecha', array('onclick' => 'js:document.location.href="'. Yii::app()->createUrl('/donantes/default/reporte'). '"', 'class' => 'btn btn-secondary form-control')); ?></th>
 					</tr>
 					<tr>
 						<td><?php echo CHtml::button('Consolidado anual de donantes', array('onclick' => 'js:document.location.href="'. Yii::app()->createUrl('/donantes/default/consolidado/year/' . date('Y')). '"', 'class' => 'btn btn-primary form-control')); ?></th>

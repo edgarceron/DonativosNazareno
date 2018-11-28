@@ -16,7 +16,7 @@
 		<div class="card-body">
 			<?php $form=$this->beginWidget('CActiveForm', array(
 				'id'=>'donaciones-formulario-form',
-				'action'=>Yii::app()->createAbsoluteUrl('/donaciones/default/guardar'),
+				'action'=>Yii::app()->createAbsoluteUrl('/donaciones/default/guardar' . $parametros_get),
 				// Please note: When you enable ajax validation, make sure the corresponding
 				// controller action is handling ajax validation correctly.
 				// See class documentation of CActiveForm for details on this,
@@ -161,6 +161,8 @@
 			{documento: numdoc}, 
 			function(r) {
 				if(r == 2){
+					var apellid = $('#donante_apellido_donante');
+					apellid.prop('disabled', true);
 					var c = $('#representante').attr('class');
 					if(c == 'form-row collapse'){
 						$('#representante').addClass('show');

@@ -20,6 +20,7 @@
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css" rel="stylesheet">   
             
         <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /> 
+		<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/images/Nazarene Logo-stacked.ico" type="image/x-icon" />
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
