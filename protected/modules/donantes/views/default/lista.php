@@ -32,7 +32,7 @@ $this->breadcrumbs=array(
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<?php echo CHtml::label('Tipo de documento', 'tipo'); ?>
-						<?php echo CHtml::dropDownList('tipo',$tipo, array('1' => 'Cedula de ciudadania', '2' => 'Nit', '3' => 'Pasaporte'), array('id'=>'tipo', 'class'=>'form-control')); ?>
+						<?php echo CHtml::dropDownList('tipo',$tipo, array('1' => 'Cedula de ciudadania', '2' => 'Nit', '3' => 'Cedula de extrangeria'), array('id'=>'tipo', 'class'=>'form-control')); ?>
 					</div>	
 					
 					<div class="form-group col-md-6">

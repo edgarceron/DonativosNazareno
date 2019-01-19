@@ -123,7 +123,7 @@ class Donantes extends CActiveRecord
 	}
 	
 	public static function tiposDocumento(){
-		return array('1' => 'Cedula de ciudadania', '2' => 'Nit', '3' => 'Pasaporte');
+		return array('1' => 'Cedula de ciudadania', '2' => 'Nit', '3' => 'Cedula de extrangeria ');
 	}
 
 	/**
