@@ -20,6 +20,8 @@ class GuardarAction extends CAction
 		}
 		
 		//Añadiendo datos al modelo
+		$digito = $_POST['digito'];
+		unset($_POST['digito']);
 		$model->attributes=$_POST['Donantes'];
 		$errores = false;
 		if($model->getIsNewRecord() && $this->existenDuplicados($model['numero_documento_donante'], $model['tipo_documento_donante'])){
@@ -33,12 +35,16 @@ class GuardarAction extends CAction
 				$errores = true;
 			}
 		}
+		
 		$model->nombre_donante = strtoupper($model->nombre_donante);
 		$model->apellido_donante = strtoupper($model->apellido_donante);
 		$model->direccion_donante = strtoupper($model->direccion_donante);
 		$model->correo_donante = strtoupper($model->correo_donante);
 		
 		if($model->tipo_documento_donante == 2){
+			if($digito != ''){
+				$model['numero_documento_donante'] = $model['numero_documento_donante'] . "-" . $digito;
+			}
 			$documento = $model->numero_documento_donante;
 			$aux = explode('-', $documento);
 			if(count($aux) == 2){

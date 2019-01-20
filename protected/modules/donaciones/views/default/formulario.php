@@ -120,7 +120,7 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<?php echo $form->labelEx($model,'valor_donacion',array()); ?>
-					<?php echo $form->textField($model,'valor_donacion',array('class'=>'form-control')); ?>
+					<?php echo $form->textField($model,'valor_donacion',array('id' => 'valor_donacion','class'=>'form-control', 'oninput'=>'formatoMoneda(this)')); ?>
 					<?php echo $form->error($model,'valor_donacion', array('style' => 'color : #F00')); ?>
 				</div>
 			</div>
@@ -134,6 +134,7 @@
 </div>
 
 <script type="text/javascript">
+
 	function mostrarDonante(){
 		var numdoc = $('#id_donante').val();
 		<?php echo CHtml::ajax(

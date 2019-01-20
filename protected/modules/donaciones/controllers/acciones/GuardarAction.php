@@ -57,6 +57,7 @@ class GuardarAction extends CAction
 		}
 		
 		//Añadiendo datos al modelo
+		$_POST['Donaciones']['valor_donacion'] = str_replace(".", "", $_POST['Donaciones']['valor_donacion']);
 		$model->attributes=$_POST['Donaciones'];
 		$evento = $model->id_evento;
 		$model['validez_donacion'] = 1;

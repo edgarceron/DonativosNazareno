@@ -24,8 +24,40 @@ class CertificadoAction extends CAction
 			$hasta = '';
 		}
 		
+		$year_end='';
+		$year_start='';
+		if($hasta != ''){
+			$time = strtotime($hasta);
+			$year_end = date('Y',$time);
+		}
 		
+		if($desde != ''){
+			$time = strtotime($desde);
+			$year_start = date('Y',$time);
+		}
 		
+		if($year_start != '' &&  $year_end != '' && $year_start != $year_start){
+			$year = $year_start . "-" . $year_end;
+		}
+		else if($year_start != ''){
+			if($year_start != date('Y')){
+				$year = $year_start . "-" . date('Y');
+			}
+			else{
+				$year = $year_start;
+			}
+		}
+		else if($year_end != ''){
+			if($year_end != 2018){
+				$year = "2018-" . $year_end;
+			}
+			else{
+				$year = $year_end;
+			}
+		}
+		else{
+			$year = '2018' . "-" . date('Y');
+		}
 		
 		$valor_donaciones = $this->calcularDonaciones($id, $desde, $hasta);
 		
@@ -42,7 +74,8 @@ class CertificadoAction extends CAction
 				'numero_documento' => $numero_documento,
 				'valor_donaciones' => $valor_donaciones,
 				'fecha_deletreada' => $fecha_deletreada,
-				'firma_contador' => $firma_contador), 
+				'firma_contador' => $firma_contador,
+				'year' => $year), 
 			true
 		);
 		$mpdf=new mPDF(

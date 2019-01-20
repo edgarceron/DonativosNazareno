@@ -20,7 +20,7 @@
 	</head>
 		
 	<body>
-		<h3 style = "text-align:center"> CERTIFICADO DE DONACIÓN <br> AÑO GRAVABLE 2018 </h3>
+		<h3 style = "text-align:center"> CERTIFICADO DE DONACIÓN <br> AÑO GRAVABLE <?php echo $year; ?> </h3>
 
 		<h3 style = "text-align:center"> IGLESIA CASA DE ORACIÓN DEL NAZARENO <br>NIT 900.228.452-0</h3>
 

@@ -68,14 +68,14 @@ class ListaAction extends CAction
 		}
 		
 		if(isset($_GET['minimo'])){
-			$minimo = $_GET['minimo'];
+			$minimo = str_replace(".", "", $_GET['minimo']);
 		}
 		else{
 			$minimo = '';
 		}
 		
 		if(isset($_GET['maximo'])){
-			$maximo = $_GET['maximo'];
+			$maximo = str_replace(".", "", $_GET['maximo']);
 		}
 		else{
 			$maximo = '';
@@ -154,7 +154,7 @@ class ListaAction extends CAction
 			$max = $maximo;
 		}
 		
-		$criteria->addCondition('valor_donacion > ' . $min . ' AND valor_donacion < ' . $max);
+		$criteria->addCondition('valor_donacion >= ' . $min . ' AND valor_donacion <= ' . $max);
 		
 		if($desde != '' && $hasta != ''){
 			$criteria->addCondition('t2.fecha_evento BETWEEN "'.$desde.'" AND DATE_ADD("'.$hasta.'", INTERVAL 1 DAY)');
@@ -181,8 +181,8 @@ class ListaAction extends CAction
 			'donante' => $donante,
 			'nombres' => $nombres,
 			'apellidos' => $apellidos,
-			'minimo' => $minimo,
-			'maximo' => $maximo,
+			'minimo' => $_GET['minimo'],
+			'maximo' => $_GET['maximo'],
 			'desde' => $desde,
 			'hasta' => $hasta,
 			'anuladas' => $anuladas,

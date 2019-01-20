@@ -76,7 +76,11 @@ $this->breadcrumbs=array(
 					'columns'=>array(
 						'idEvento.nombre_evento',
 						'idEvento.fecha_evento',
-						'valor_donacion',
+						array(
+							'name' => 'valor_donacion',
+							'type' => 'raw',
+							'value' => 'number_format($data->valor_donacion, 0, ",", ".")'
+						),
 						array
 						(
 							'class'=>'CButtonColumn',

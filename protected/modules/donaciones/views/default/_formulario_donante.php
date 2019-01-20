@@ -11,51 +11,59 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo CHtml::errorSummary($model); ?>
-
-    <div class="form-group col-md-6">
-		<?php echo CHtml::activeLabelEx($model,'tipo_documento_donante',array()); ?>
-		<?php echo CHtml::activeDropDownList($model,'tipo_documento_donante', array('1' => 'Cedula de ciudadania', '2' => 'Nit', '3' => 'Pasaporte'),array('class'=>'form-control', 'id' => $tipo. "_tipo_documento_donante", 'onchange' => 'verificarCampos()')); ?>
-		<?php echo CHtml::error($model,'tipo_documento_donante'); ?>
-    </div>
-    <div class="form-group col-md-6">
-		<?php echo CHtml::activeLabelEx($model,'numero_documento_donante',array()); ?>
-		<?php echo CHtml::activeTextField($model,'numero_documento_donante',array('class'=>'form-control', 'id' => $tipo. "_numero_documento_donante")); ?>
-		<?php echo CHtml::error($model,'numero_documento_donante'); ?>
-    </div>
-    <div class="form-group col-md-6">
-		<?php echo CHtml::activeLabelEx($model,'nombre_donante',array()); ?>
-		<?php echo CHtml::activeTextField($model,'nombre_donante',array('class'=>'form-control', 'id' => $tipo . "_nombre_donante")); ?>
-		<?php echo CHtml::error($model,'nombre_donante'); ?>
-    </div>
-    <div class="form-group col-md-6">
-		<?php echo CHtml::activeLabelEx($model,'apellido_donante',array()); ?>
-		<?php echo CHtml::activeTextField($model,'apellido_donante',array('class'=>'form-control', 'id' => $tipo. "_apellido_donante")); ?>
-		<?php echo CHtml::error($model,'apellido_donante'); ?>
-    </div>
-    <div class="form-group col-md-6">
-		<?php echo CHtml::activeLabelEx($model,'direccion_donante',array()); ?>
-		<?php echo CHtml::activeTextField($model,'direccion_donante',array('class'=>'form-control', 'id' => $tipo. "_direccion_donante")); ?>
-		<?php echo CHtml::error($model,'direccion_donante'); ?>
-    </div>
-    <div class="form-group col-md-6">
-		<?php echo CHtml::activeLabelEx($model,'correo_donante',array()); ?>
-		<?php echo CHtml::activeTextField($model,'correo_donante',array('class'=>'form-control', 'id' => $tipo. "_correo_donante")); ?>
-		<?php echo CHtml::error($model,'correo_donante'); ?>
-    </div>
-    <div class="form-group col-md-6">
-		<?php echo CHtml::activeLabelEx($model,'telefono_donante',array()); ?>
-		<?php echo CHtml::activeTextField($model,'telefono_donante',array('class'=>'form-control', 'id' => $tipo. "_telefono_donante")); ?>
-		<?php echo CHtml::error($model,'telefono_donante'); ?>
-    </div>
-    <div class="col-lg-12">
-	<div class="form-group">
-		<?php echo CHtml::button($texto_boton,array('class'=>'btn btn-primary', 'onclick' => 'guardar'. $tipo . '()')); ?>
-		<?php echo CHtml::label('', '',array('id' => $tipo . '_label_mensaje')); ?>
+	<div class="row">
+		<div class="form-group col-md-6">
+			<?php echo CHtml::activeLabelEx($model,'tipo_documento_donante',array()); ?>
+			<?php echo CHtml::activeDropDownList($model,'tipo_documento_donante', array('1' => 'Cedula de ciudadania', '2' => 'Nit', '3' => 'Pasaporte'),array('class'=>'form-control', 'id' => $tipo. "_tipo_documento_donante", 'onchange' => 'verificarCampos()')); ?>
+			<?php echo CHtml::error($model,'tipo_documento_donante'); ?>
+		</div>
 	</div>
-    </div>
+	<div class="row">
+		<div class="form-group col-md-6">
+			<?php echo CHtml::activeLabelEx($model,'numero_documento_donante',array()); ?>
+			<?php echo CHtml::activeTextField($model,'numero_documento_donante',array('class'=>'form-control', 'id' => $tipo. "_numero_documento_donante")); ?>
+			<?php echo CHtml::error($model,'numero_documento_donante'); ?>
+		</div>
+		<div class="form-group col-md-4">
+			<?php echo CHtml::label('Digito de verificación','digito',array('class'=>'invisible', 'id' => 'digito_label')); ?>
+			<?php echo CHtml::textField('digito','',array('class'=>'invisible form-control', 'id' => 'digito', 'maxlength'=> 1)); ?>
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group col-md-6">
+			<?php echo CHtml::activeLabelEx($model,'nombre_donante',array()); ?>
+			<?php echo CHtml::activeTextField($model,'nombre_donante',array('class'=>'form-control', 'id' => $tipo . "_nombre_donante")); ?>
+			<?php echo CHtml::error($model,'nombre_donante'); ?>
+		</div>
+		<div class="form-group col-md-6">
+			<?php echo CHtml::activeLabelEx($model,'apellido_donante',array()); ?>
+			<?php echo CHtml::activeTextField($model,'apellido_donante',array('class'=>'form-control', 'id' => $tipo. "_apellido_donante")); ?>
+			<?php echo CHtml::error($model,'apellido_donante'); ?>
+		</div>
+		<div class="form-group col-md-6">
+			<?php echo CHtml::activeLabelEx($model,'direccion_donante',array()); ?>
+			<?php echo CHtml::activeTextField($model,'direccion_donante',array('class'=>'form-control', 'id' => $tipo. "_direccion_donante")); ?>
+			<?php echo CHtml::error($model,'direccion_donante'); ?>
+		</div>
+		<div class="form-group col-md-6">
+			<?php echo CHtml::activeLabelEx($model,'correo_donante',array()); ?>
+			<?php echo CHtml::activeTextField($model,'correo_donante',array('class'=>'form-control', 'id' => $tipo. "_correo_donante")); ?>
+			<?php echo CHtml::error($model,'correo_donante'); ?>
+		</div>
+		<div class="form-group col-md-6">
+			<?php echo CHtml::activeLabelEx($model,'telefono_donante',array()); ?>
+			<?php echo CHtml::activeTextField($model,'telefono_donante',array('class'=>'form-control', 'id' => $tipo. "_telefono_donante")); ?>
+			<?php echo CHtml::error($model,'telefono_donante'); ?>
+		</div>
+		<div class="col-lg-12">
+			<div class="form-group">
+				<?php echo CHtml::button($texto_boton,array('class'=>'btn btn-primary', 'onclick' => 'guardar'. $tipo . '()')); ?>
+				<?php echo CHtml::label('', '',array('id' => $tipo . '_label_mensaje')); ?>
+			</div>
+		</div>
+	</div>
 	
 	<script>
-	
 	
 	function verificarCampos(){
 		var tipdoc = $('<?php echo '#'. $tipo . '_tipo_documento_donante'?>').val();
@@ -63,9 +71,17 @@
 		if(tipdoc == 2){
 			apellid.val("");
 			apellid.prop('disabled', true);
+			$('#digito').removeClass('invisible');
+			$('#digito_label').removeClass('invisible');
+			$('#digito').addClass('visible');
+			$('#digito_label').addClass('visible');
 		}
 		else{
 			apellid.prop('disabled', false);
+			$('#digito').removeClass('visible');
+			$('#digito_label').removeClass('visible');
+			$('#digito').addClass('invisible');
+			$('#digito_label').addClass('invisible');
 		}
 	}
 	

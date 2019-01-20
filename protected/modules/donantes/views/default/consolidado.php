@@ -170,18 +170,66 @@ $this->breadcrumbs=array(
 							//'htmlOptions'=>array('style'=>'width:30%'),
 						),
 						'telefono_donante',
-						'enero',
-						'febrero',
-						'marzo',
-						'abril',
-						'mayo',
-						'junio',
-						'julio',
-						'agosto',
-						'septiembre',
-						'octubre',
-						'noviembre',
-						'diciembre',				
+						array(
+							'name' => 'enero',
+							'type' => 'raw',
+							'value' => 'number_format($data->enero, 0, ",", ".")'
+						),
+						array(
+							'name' => 'febrero',
+							'type' => 'raw',
+							'value' => 'number_format($data->febrero, 0, ",", ".")'
+						),
+						array(
+							'name' => 'marzo',
+							'type' => 'raw',
+							'value' => 'number_format($data->marzo, 0, ",", ".")'
+						),
+						array(
+							'name' => 'abril',
+							'type' => 'raw',
+							'value' => 'number_format($data->abril, 0, ",", ".")'
+						),
+						array(
+							'name' => 'mayo',
+							'type' => 'raw',
+							'value' => 'number_format($data->mayo, 0, ",", ".")'
+						),
+						array(
+							'name' => 'junio',
+							'type' => 'raw',
+							'value' => 'number_format($data->junio, 0, ",", ".")'
+						),
+						array(
+							'name' => 'julio',
+							'type' => 'raw',
+							'value' => 'number_format($data->julio, 0, ",", ".")'
+						),
+						array(
+							'name' => 'agosto',
+							'type' => 'raw',
+							'value' => 'number_format($data->agosto, 0, ",", ".")'
+						),
+						array(
+							'name' => 'septiembre',
+							'type' => 'raw',
+							'value' => 'number_format($data->septiembre, 0, ",", ".")'
+						),
+						array(
+							'name' => 'octubre',
+							'type' => 'raw',
+							'value' => 'number_format($data->octubre, 0, ",", ".")'
+						),
+						array(
+							'name' => 'noviembre',
+							'type' => 'raw',
+							'value' => 'number_format($data->noviembre, 0, ",", ".")'
+						),
+						array(
+							'name' => 'diciembre',
+							'type' => 'raw',
+							'value' => 'number_format($data->diciembre, 0, ",", ".")'
+						),		
 					),
 				)
 			);			

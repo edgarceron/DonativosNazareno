@@ -19,46 +19,60 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model, null, null, array('style' => 'color : #F00')); ?>
-
-    <div class="form-group col-md-6">
-		<?php echo $form->labelEx($model,'tipo_documento_donante',array()); ?>
-		<?php echo $form->dropDownList($model,'tipo_documento_donante', array('1' => 'Cedula de ciudadania', '2' => 'Nit', '3' => 'Cedula de extrangeria'),array('class'=>'form-control', 'id' => 'tipo_documento', 'onchange' => 'verificarCampos()')); ?>
-		<?php echo $form->error($model,'tipo_documento_donante', array('style' => 'color : #F00')); ?>
-    </div>
-    <div class="form-group col-md-6">
-		<?php echo $form->labelEx($model,'numero_documento_donante',array()); ?>
-		<?php echo $form->textField($model,'numero_documento_donante',array('class'=>'form-control')); ?>
-		<?php echo $form->error($model,'numero_documento_donante', array('style' => 'color : #F00')); ?>
-    </div>
-    <div class="form-group col-md-6">
-		<?php echo $form->labelEx($model,'nombre_donante',array()); ?>
-		<?php echo $form->textField($model,'nombre_donante',array('class'=>'form-control')); ?>
-		<?php echo $form->error($model,'nombre_donante', array('style' => 'color : #F00')); ?>
-    </div>
-    <div class="form-group col-md-6">
-		<?php echo $form->labelEx($model,'apellido_donante',array()); ?>
-		<?php echo $form->textField($model,'apellido_donante',array('class'=>'form-control', 'id' => 'apellido_donante')); ?>
-		<?php echo $form->error($model,'apellido_donante', array('style' => 'color : #F00')); ?>
-    </div>
-    <div class="form-group col-md-6">
-		<?php echo $form->labelEx($model,'direccion_donante',array()); ?>
-		<?php echo $form->textField($model,'direccion_donante',array('class'=>'form-control')); ?>
-		<?php echo $form->error($model,'direccion_donante', array('style' => 'color : #F00')); ?>
-    </div>
-    <div class="form-group col-md-6">
-		<?php echo $form->labelEx($model,'correo_donante',array()); ?>
-		<?php echo $form->textField($model,'correo_donante',array('class'=>'form-control')); ?>
-		<?php echo $form->error($model,'correo_donante', array('style' => 'color : #F00')); ?>
-    </div>
-    <div class="form-group col-md-6">
-		<?php echo $form->labelEx($model,'telefono_donante',array()); ?>
-		<?php echo $form->textField($model,'telefono_donante',array('class'=>'form-control')); ?>
-		<?php echo $form->error($model,'telefono_donante', array('style' => 'color : #F00')); ?>
-    </div>
-    <div class="col-lg-12">
-	<div class="form-group">
-		<?php echo CHtml::submitButton($texto_boton,array('class'=>'btn btn-primary')); ?>
+	<div class="row">
+		<div class="form-group col-md-6">
+			<?php echo $form->labelEx($model,'tipo_documento_donante',array()); ?>
+			<?php echo $form->dropDownList($model,'tipo_documento_donante', array('1' => 'Cedula de ciudadania', '2' => 'Nit', '3' => 'Cedula de extrangeria'),array('class'=>'form-control', 'id' => 'tipo_documento', 'onchange' => 'verificarCampos()')); ?>
+			<?php echo $form->error($model,'tipo_documento_donante', array('style' => 'color : #F00')); ?>
+		</div>
 	</div>
+	<div class="row">
+		<div class="form-group col-md-4">
+			<?php echo $form->labelEx($model,'numero_documento_donante',array()); ?>
+			<?php echo $form->textField($model,'numero_documento_donante',array('class'=>'form-control')); ?>
+			<?php echo $form->error($model,'numero_documento_donante', array('style' => 'color : #F00')); ?>
+		</div>
+		<div class="form-group col-md-2">
+			<?php echo CHtml::label('Digito de verificación','digito',array('class'=>'invisible', 'id' => 'digito_label')); ?>
+			<?php echo CHtml::textField('digito','',array('class'=>'invisible form-control', 'id' => 'digito', 'maxlength'=> 1)); ?>
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group col-md-6">
+			<?php echo $form->labelEx($model,'nombre_donante',array()); ?>
+			<?php echo $form->textField($model,'nombre_donante',array('class'=>'form-control')); ?>
+			<?php echo $form->error($model,'nombre_donante', array('style' => 'color : #F00')); ?>
+		</div>
+		<div class="form-group col-md-6">
+			<?php echo $form->labelEx($model,'apellido_donante',array()); ?>
+			<?php echo $form->textField($model,'apellido_donante',array('class'=>'form-control', 'id' => 'apellido_donante')); ?>
+			<?php echo $form->error($model,'apellido_donante', array('style' => 'color : #F00')); ?>
+		</div>
+		<div class="form-group col-md-6">
+			<?php echo $form->labelEx($model,'direccion_donante',array()); ?>
+			<?php echo $form->textField($model,'direccion_donante',array('class'=>'form-control')); ?>
+			<?php echo $form->error($model,'direccion_donante', array('style' => 'color : #F00')); ?>
+		</div>
+		<div class="form-group col-md-6">
+			<?php echo $form->labelEx($model,'correo_donante',array()); ?>
+			<?php echo $form->textField($model,'correo_donante',array('class'=>'form-control')); ?>
+			<?php echo $form->error($model,'correo_donante', array('style' => 'color : #F00')); ?>
+		</div>
+		<div class="form-group col-md-6">
+			<?php echo $form->labelEx($model,'telefono_donante',array()); ?>
+			<?php echo $form->textField($model,'telefono_donante',array('class'=>'form-control')); ?>
+			<?php echo $form->error($model,'telefono_donante', array('style' => 'color : #F00')); ?>
+		</div>
+		<div class="col-lg-12">
+			<div class="form-group">
+				<?php echo CHtml::submitButton($texto_boton,array('class'=>'btn btn-primary')); ?>
+			</div>
+		</div>
+	</div>
+    <div class="col-lg-12">
+		<div class="form-group">
+			<?php echo CHtml::submitButton($texto_boton,array('class'=>'btn btn-primary')); ?>
+		</div>
     </div>
 <?php $this->endWidget(); ?>
 
@@ -69,9 +83,17 @@
 		if(tipdoc == 2){
 			apellid.val("");
 			apellid.prop('disabled', true);
+			$('#digito').removeClass('invisible');
+			$('#digito_label').removeClass('invisible');
+			$('#digito').addClass('visible');
+			$('#digito_label').addClass('visible');
 		}
 		else{
 			apellid.prop('disabled', false);
+			$('#digito').removeClass('visible');
+			$('#digito_label').removeClass('visible');
+			$('#digito').addClass('invisible');
+			$('#digito_label').addClass('invisible');
 		}
 	}
 	
@@ -79,6 +101,10 @@
 		var t = $('#tipo_documento').val();
 		if(t == 2){
 			$('#apellido_donante').prop('disabled', true);
+			$('#digito').removeClass('invisible');
+			$('#digito_label').removeClass('invisible');
+			$('#digito').addClass('visible');
+			$('#digito_label').addClass('visible');
 		}
 	}
 </script>

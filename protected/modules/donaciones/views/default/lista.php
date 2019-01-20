@@ -74,12 +74,12 @@ $this->breadcrumbs=array(
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<?php echo CHtml::label('Valor donación desde', 'minimo'); ?>
-						<?php echo CHtml::textField('minimo',$minimo,array('id'=>'minimo', 'class'=>'form-control')); ?>
+						<?php echo CHtml::textField('minimo',$minimo,array('id'=>'minimo', 'class'=>'form-control','oninput'=>'formatoMoneda(this)')); ?>
 					</div>	
 					
 					<div class="form-group col-md-6">
 						<?php echo CHtml::label('hasta', 'maximo'); ?>
-						<?php echo CHtml::textField('maximo',$maximo,array('id'=>'maximo', 'class'=>'form-control')); ?>
+						<?php echo CHtml::textField('maximo',$maximo,array('id'=>'maximo', 'class'=>'form-control', 'oninput'=>'formatoMoneda(this)')); ?>
 					</div>	
 				</div>	
 				
@@ -159,6 +159,7 @@ $this->breadcrumbs=array(
 			//print_r($dataProvider);
 		?>
 		<?php
+			setlocale(LC_MONETARY, 'es_CO');
 			Yii::app()->controller->widget(
 				'zii.widgets.grid.CGridView', array(	
 					'id'=>'reporte-grid',
@@ -175,7 +176,11 @@ $this->breadcrumbs=array(
 						'idDonanteDonacion.apellido_donante',
 						'idEvento.nombre_evento',
 						'idEvento.fecha_evento',
-						'valor_donacion',
+						array(
+							'name' => 'valor_donacion',
+							'type' => 'raw',
+							'value' => 'number_format($data->valor_donacion, 0, ",", ".")'
+						),
 						array
 						(
 							'class'=>'CButtonColumn',
