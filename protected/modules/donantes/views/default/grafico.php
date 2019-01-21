@@ -3,7 +3,16 @@
 <div class="col-sm-12">
 	<div class="card">
 		<div class="card-header">
-			<img alt="Bootstrap Image Preview" src="<?php echo Yii::app()->request->baseUrl.'/images/edit64.png' ?>"/>
+			<table>
+				<tr>
+					<th>
+						<img alt="Bootstrap Image Preview" src="<?php echo Yii::app()->request->baseUrl.'/images/edit64.png' ?>"/>
+					</th>
+					<th>
+						<h2>Filtrar resultado</h2>
+					</th>
+				</tr>
+			</table>
 		</div>
 		
 		<div class="card-body">

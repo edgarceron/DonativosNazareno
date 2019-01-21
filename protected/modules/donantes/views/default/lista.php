@@ -12,7 +12,16 @@ $this->breadcrumbs=array(
 <div class="col-sm-12">
 	<div class="card">
 		<div class="card-header">
-			<img alt="Bootstrap Image Preview" src="<?php echo Yii::app()->request->baseUrl.'/images/edit64.png' ?>"/>
+			<table>
+				<tr>
+					<th>
+						<img alt="Bootstrap Image Preview" src="<?php echo Yii::app()->request->baseUrl.'/images/edit64.png' ?>"/>
+					</th>
+					<th>
+						<h2>Filtrar busqueda</h2>
+					</th>
+				</tr>
+			</table>
 		</div>
 		
 		<div class="card-body">
@@ -55,7 +64,7 @@ $this->breadcrumbs=array(
 				
 				<div class="form-row">
 					<div class="form-group col-md-4">
-						<?php echo CHtml::label('Dirrecciom', 'direccion'); ?>
+						<?php echo CHtml::label('Dirrección', 'direccion'); ?>
 						<?php echo CHtml::textField('direccion',$direccion,array('id'=>'direccion', 'class'=>'form-control')); ?>
 					</div>	
 					
@@ -85,7 +94,16 @@ $this->breadcrumbs=array(
 	<br>
 	<div class="card">
 		<div class="card-header">
-			<img alt="Bootstrap Image Preview" src="<?php echo Yii::app()->request->baseUrl.'/images/list64.png' ?>"/>
+			<table>
+				<tr>
+					<th>
+						<img alt="Bootstrap Image Preview" src="<?php echo Yii::app()->request->baseUrl.'/images/list64.png' ?>"/>
+					</th>
+					<th>
+						<h2>Resultados de la busqueda</h2>
+					</th>
+				</tr>
+			</table>
 		</div>
 		
 		<div class="card-body">

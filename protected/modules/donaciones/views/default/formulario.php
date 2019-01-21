@@ -8,7 +8,16 @@
 <div class="col-sm-12">
 	<div class="card">
 		<div class="card-header">
-			<img alt="Bootstrap Image Preview" src="<?php echo Yii::app()->request->baseUrl.$icono ?>"/>
+			<table>
+				<tr>
+					<th>
+						<img alt="Bootstrap Image Preview" src="<?php echo Yii::app()->request->baseUrl.$icono ?>"/>
+					</th>
+					<th>
+						<h2>Ingresar donaciones</h2>
+					</th>
+				</tr>
+			</table>
 		</div>
 		
 		<?php echo $mensaje ?>

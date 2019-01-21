@@ -26,7 +26,7 @@
 		</div>
 		<div class="form-group col-md-4">
 			<?php echo CHtml::label('Digito de verificación','digito',array('class'=>'invisible', 'id' => 'digito_label')); ?>
-			<?php echo CHtml::textField('digito','',array('class'=>'invisible form-control', 'id' => 'digito', 'maxlength'=> 1)); ?>
+			<?php echo CHtml::textField('digito','',array('class'=>'invisible form-control', 'id' => $tipo. '_digito', 'maxlength'=> 1)); ?>
 		</div>
 	</div>
 	<div class="row">
@@ -69,18 +69,16 @@
 		var tipdoc = $('<?php echo '#'. $tipo . '_tipo_documento_donante'?>').val();
 		var apellid = $('<?php echo '#'. $tipo . '_apellido_donante'?>');
 		if(tipdoc == 2){
-			apellid.val("");
-			apellid.prop('disabled', true);
-			$('#digito').removeClass('invisible');
+			$('#<?php echo $tipo ?>_digito').removeClass('invisible');
 			$('#digito_label').removeClass('invisible');
-			$('#digito').addClass('visible');
+			$('#<?php echo $tipo ?>_digito').addClass('visible');
 			$('#digito_label').addClass('visible');
 		}
 		else{
 			apellid.prop('disabled', false);
-			$('#digito').removeClass('visible');
+			$('#<?php echo $tipo ?>_digito').removeClass('visible');
 			$('#digito_label').removeClass('visible');
-			$('#digito').addClass('invisible');
+			$('#<?php echo $tipo ?>_digito').addClass('invisible');
 			$('#digito_label').addClass('invisible');
 		}
 	}
@@ -89,6 +87,7 @@
 		
 		var tipo_documento_donante = $('<?php echo '#'. $tipo . '_tipo_documento_donante'?>').val();
 		var numero_documento_donante = $('<?php echo '#'. $tipo . '_numero_documento_donante'?>').val();
+		var digito = $('<?php echo '#'. $tipo . '_digito'?>').val();
 		
 		var nombre_donante = $('<?php echo '#'. $tipo . '_nombre_donante'?>').val();
 		var apellido_donante = $('<?php echo '#'. $tipo . '_apellido_donante'?>').val();
@@ -107,6 +106,7 @@
 				direccion_donante: direccion_donante,
 				correo_donante: correo_donante,
 				telefono_donante: telefono_donante,
+				digito: digito,
 				id: id,
 			}, 
 			function(r) {

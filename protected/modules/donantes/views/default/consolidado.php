@@ -12,7 +12,16 @@ $this->breadcrumbs=array(
 <div class="col-sm-12">
 	<div class="card">
 		<div class="card-header">
-			<img alt="Bootstrap Image Preview" src="<?php echo Yii::app()->request->baseUrl.'/images/edit64.png' ?>"/>
+			<table>
+				<tr>
+					<th>
+						<img alt="Bootstrap Image Preview" src="<?php echo Yii::app()->request->baseUrl.'/images/edit64.png' ?>"/>
+					</th>
+					<th>
+						<h2>Filtrar busqueda</h2>
+					</th>
+				</tr>
+			</table>
 		</div>
 		
 		<div class="card-body">
@@ -33,7 +42,7 @@ $this->breadcrumbs=array(
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<?php echo CHtml::label('Tipo de documento', 'tipo'); ?>
-						<?php echo CHtml::dropDownList('tipo',$tipo, array('1' => 'Cedula de ciudadania', '2' => 'Nit', '3' => 'Pasaporte'), array('id'=>'tipo', 'class'=>'form-control')); ?>
+						<?php echo CHtml::dropDownList('tipo',$tipo, Donantes::tiposDocumento(), array('id'=>'tipo', 'class'=>'form-control')); ?>
 					</div>	
 					<div class="form-group col-md-6">
 						<?php echo CHtml::label('Numero documento donante', 'donante'); ?>
@@ -135,7 +144,16 @@ $this->breadcrumbs=array(
 	<br>
 	<div class="card">
 		<div class="card-header">
-			<img alt="Bootstrap Image Preview" src="<?php echo Yii::app()->request->baseUrl.'/images/list64.png' ?>"/>
+			<table>
+				<tr>
+					<th>
+						<img alt="Bootstrap Image Preview" src="<?php echo Yii::app()->request->baseUrl.'/images/list64.png' ?>"/>
+					</th>
+					<th>
+						<h2>Resultados de la busqueda</h2>
+					</th>
+				</tr>
+			</table>
 		</div>
 		
 		<div class="card-body table-responsive">

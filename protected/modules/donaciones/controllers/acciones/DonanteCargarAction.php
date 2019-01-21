@@ -14,7 +14,7 @@ class DonanteCargarAction extends CAction
 		
 		$documento = $_GET['documento'];
 		$tipo = $_GET['tipo'];
-		$donante = Donantes::model()->find('numero_documento_donante = "' . $documento . '"'); 
+		$donante = Donantes::model()->find('numero_documento_donante LIKE "' . $documento . '%"'); 
 		if($donante == null){
 			$model = new Donantes;
 			$model['numero_documento_donante'] = $documento;

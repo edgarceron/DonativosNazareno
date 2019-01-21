@@ -36,8 +36,13 @@ class CertificadoAction extends CAction
 			$year_start = date('Y',$time);
 		}
 		
-		if($year_start != '' &&  $year_end != '' && $year_start != $year_start){
-			$year = $year_start . "-" . $year_end;
+		if($year_start != '' &&  $year_end != ''){
+			if($year_start != $year_start){
+				$year = $year_start . "-" . $year_end;
+			}
+			else{
+				$year = $year_start;
+			}
 		}
 		else if($year_start != ''){
 			if($year_start != date('Y')){

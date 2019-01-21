@@ -6,6 +6,9 @@ class DonanteGuardarAction extends CAction
     {                           
         //Carga del modelo
 		$id = $_GET['id'];
+		$digito = $_GET['digito'];
+		unset($_GET['digito']);
+		
 		if($id != ''){
 			$model = Donantes::model()->findByPk($id);
 			$model->attributes = $_GET;
@@ -22,6 +25,9 @@ class DonanteGuardarAction extends CAction
 		$model->correo_donante = strtoupper($model->correo_donante);
 		
 		if($model->tipo_documento_donante == 2){
+			if($digito != ''){
+				$model->numero_documento_donante = $model->numero_documento_donante . "-" . $digito;
+			}
 			$documento = $model->numero_documento_donante;
 			$aux = explode('-', $documento);
 			if(count($aux) == 2){

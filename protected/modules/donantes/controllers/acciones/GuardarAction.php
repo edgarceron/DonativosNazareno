@@ -29,13 +29,6 @@ class GuardarAction extends CAction
 			$errores = true;
 		}
 		
-		if($model['tipo_documento_donante'] != 2){
-			if($model['apellido_donante'] == ''){
-				$model->addError('apellido_donante', 'Apellido no puede ser nulo si el donante es persona natural');
-				$errores = true;
-			}
-		}
-		
 		$model->nombre_donante = strtoupper($model->nombre_donante);
 		$model->apellido_donante = strtoupper($model->apellido_donante);
 		$model->direccion_donante = strtoupper($model->direccion_donante);

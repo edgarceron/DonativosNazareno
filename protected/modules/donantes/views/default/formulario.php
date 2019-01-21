@@ -76,8 +76,6 @@
 		var tipdoc = $('#tipo_documento').val();
 		var apellid = $('#apellido_donante');
 		if(tipdoc == 2){
-			apellid.val("");
-			apellid.prop('disabled', true);
 			$('#digito').removeClass('invisible');
 			$('#digito_label').removeClass('invisible');
 			$('#digito').addClass('visible');
