@@ -56,7 +56,7 @@ class RecuperarAction extends CAction
 	
 	public function enviarCorreo($usuario){
 		
-		$mail = new PHPMailer;
+		$mail = new PHPMailer\PHPMailer\PHPMailer;
 		if(filter_var($usuario['email'], FILTER_VALIDATE_EMAIL)){
 			$codigo = rand(1000000000, 9999999999);
 			$nick = $usuario->nick;

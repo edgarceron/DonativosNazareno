@@ -22,7 +22,7 @@
 	<div class="row">
 		<div class="form-group col-md-6">
 			<?php echo $form->labelEx($model,'tipo_documento_donante',array()); ?>
-			<?php echo $form->dropDownList($model,'tipo_documento_donante', array('1' => 'Cedula de ciudadania', '2' => 'Nit', '3' => 'Cedula de extrangeria'),array('class'=>'form-control', 'id' => 'tipo_documento', 'onchange' => 'verificarCampos()')); ?>
+			<?php echo $form->dropDownList($model,'tipo_documento_donante', Donantes::tiposDocumento(),array('class'=>'form-control', 'id' => 'tipo_documento', 'onchange' => 'verificarCampos()')); ?>
 			<?php echo $form->error($model,'tipo_documento_donante', array('style' => 'color : #F00')); ?>
 		</div>
 	</div>
@@ -69,11 +69,6 @@
 			</div>
 		</div>
 	</div>
-    <div class="col-lg-12">
-		<div class="form-group">
-			<?php echo CHtml::submitButton($texto_boton,array('class'=>'btn btn-primary')); ?>
-		</div>
-    </div>
 <?php $this->endWidget(); ?>
 
 <script>

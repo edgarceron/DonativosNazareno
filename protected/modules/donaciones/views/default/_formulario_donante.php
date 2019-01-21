@@ -14,7 +14,7 @@
 	<div class="row">
 		<div class="form-group col-md-6">
 			<?php echo CHtml::activeLabelEx($model,'tipo_documento_donante',array()); ?>
-			<?php echo CHtml::activeDropDownList($model,'tipo_documento_donante', array('1' => 'Cedula de ciudadania', '2' => 'Nit', '3' => 'Pasaporte'),array('class'=>'form-control', 'id' => $tipo. "_tipo_documento_donante", 'onchange' => 'verificarCampos()')); ?>
+			<?php echo CHtml::activeDropDownList($model,'tipo_documento_donante', Donantes::tiposDocumento(),array('class'=>'form-control', 'id' => $tipo. "_tipo_documento_donante", 'onchange' => 'verificarCampos()')); ?>
 			<?php echo CHtml::error($model,'tipo_documento_donante'); ?>
 		</div>
 	</div>
