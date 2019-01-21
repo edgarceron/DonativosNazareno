@@ -30,6 +30,7 @@ class Donantes extends CActiveRecord
 	public $septiembre;
 	public $octubre;
 	public $noviembre;
+	public $diciembre;
 	/**
 	 * @return string the associated database table name
 	 */
