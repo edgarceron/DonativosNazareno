@@ -69,16 +69,20 @@ class ListaAction extends CAction
 		
 		if(isset($_GET['minimo'])){
 			$minimo = str_replace(".", "", $_GET['minimo']);
+			$minimo_ingresado = $_GET['minimo'];
 		}
 		else{
 			$minimo = '';
+			$minimo_ingresado = '';
 		}
 		
 		if(isset($_GET['maximo'])){
 			$maximo = str_replace(".", "", $_GET['maximo']);
+			$maximo_ingresado = $_GET['maximo'];
 		}
 		else{
 			$maximo = '';
+			$maximo_ingresado = '';
 		}
 		
 		if(isset($_GET['desde'])){
@@ -181,8 +185,8 @@ class ListaAction extends CAction
 			'donante' => $donante,
 			'nombres' => $nombres,
 			'apellidos' => $apellidos,
-			'minimo' => $_GET['minimo'],
-			'maximo' => $_GET['maximo'],
+			'minimo' => $minimo_ingresado,
+			'maximo' => $maximo_ingresado,
 			'desde' => $desde,
 			'hasta' => $hasta,
 			'anuladas' => $anuladas,

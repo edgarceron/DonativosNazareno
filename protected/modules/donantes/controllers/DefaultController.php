@@ -101,6 +101,7 @@ class DefaultController extends Controller
 			'donantesTipo'=>'application.modules.'.$this->module->id.'.controllers.acciones.DonantesTipoAction',
 			'certificado'=>'application.modules.'.$this->module->id.'.controllers.acciones.CertificadoAction',
 			'consolidado'=>'application.modules.'.$this->module->id.'.controllers.acciones.ConsolidadoAction',
+			'reporteDian'=>'application.modules.'.$this->module->id.'.controllers.acciones.ReporteDianAction',
 		);
 	}
         
@@ -151,6 +152,10 @@ class DefaultController extends Controller
 			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
                                 'actions' => array('donantesTipo'),
                                 'expression' => array(__CLASS__,'allowDonantesTipo'),
+                            ),
+			array('allow', // allow only the owner to perform 'view' 'update' 'delete' actions
+                                'actions' => array('reporteDian'),
+                                'expression' => array(__CLASS__,'allowReporteDian'),
                             ),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -502,6 +507,40 @@ class DefaultController extends Controller
 	public static function allowDonantesTipo()
 	{
 		$accion = 'donantesTipo'; 
+		if(Yii::app()->user->name != "Guest"){
+			$usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
+			$criteria = new CDbCriteria();            
+			$modulo = 'donantes';
+			$criteria->compare('perfil', $usuario->perfil);
+			$criteria->compare('modulo', $modulo);
+			$criteria->compare('accion', $accion);
+			$permisos = PerfilContenido::model()->find($criteria);
+			if(count($permisos) == 1)
+			{
+				$criteria_log = new CDbCriteria();
+				$criteria_log->compare('modulo', $modulo);
+				$criteria_log->compare('accion', $accion); 
+				$accion_log = Acciones::model()->find($criteria_log);
+				$log = new Logs;
+				$log->accion = $accion_log->id;
+				$log->usuario = Yii::app()->user->id;
+				$log->save();
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public static function allowReporteDian()
+	{
+		$accion = 'reporteDian'; 
 		if(Yii::app()->user->name != "Guest"){
 			$usuario = SofintUsers::model()->findByPk(Yii::app()->user->id);
 			$criteria = new CDbCriteria();            

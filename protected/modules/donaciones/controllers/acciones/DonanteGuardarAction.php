@@ -49,7 +49,7 @@ class DonanteGuardarAction extends CAction
 		}
 		else{
 			print("Error al guardar");
-			print_r($model);
+			print_r($model->getErrors());
 		}
     }
 }

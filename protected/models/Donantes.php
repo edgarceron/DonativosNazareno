@@ -47,9 +47,9 @@ class Donantes extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('tipo_documento_donante, numero_documento_donante, nombre_donante, apellido_donante', 'required'),
+			array('tipo_documento_donante, numero_documento_donante, nombre_donante', 'required'),
 			array('tipo_documento_donante', 'numerical', 'integerOnly'=>true),
-			array('numero_documento_donante', 'length', 'max'=>11),
+			array('numero_documento_donante', 'length', 'max'=>12),
 			array('nombre_donante, apellido_donante', 'length', 'max'=>50),
 			array('direccion_donante', 'length', 'max'=>60),
 			array('correo_donante', 'length', 'max'=>100),
@@ -123,7 +123,9 @@ class Donantes extends CActiveRecord
 	}
 	
 	public static function tiposDocumento(){
-		return array('1' => 'Cedula de ciudadania', '2' => 'Nit', '3' => 'Cedula de extrangeria ');
+		return array('1' => 'Cedula de ciudadania', '2' => 'Nit', '3' => 'Cedula de extrangeria', 
+			'4' => 'Pasaporte', '5' => 'Tarjeta de extrangeria', '6' => 'Registro civil de nacimiento', 
+			'7' => 'Tarjeta de indentidad');
 	}
 
 	/**

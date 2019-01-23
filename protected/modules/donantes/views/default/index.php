@@ -33,6 +33,9 @@ $this->breadcrumbs=array(
 					<tr>
 						<td><?php echo CHtml::button('Consolidado anual de donantes', array('onclick' => 'js:document.location.href="'. Yii::app()->createUrl('/donantes/default/consolidado/year/' . date('Y')). '"', 'class' => 'btn btn-primary form-control')); ?></th>
 					</tr>
+					<tr>
+						<td><?php echo CHtml::button('Reporte dian', array('onclick' => 'js:document.location.href="'. Yii::app()->createUrl('/donantes/default/reporteDian'). '"', 'class' => 'btn btn-secondary form-control')); ?></th>
+					</tr>
 				</table>
 			</div>
 
