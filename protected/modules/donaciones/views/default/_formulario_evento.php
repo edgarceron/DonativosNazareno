@@ -28,7 +28,7 @@ $this->breadcrumbs=array(
 						<?php echo CHtml::error($model,'fecha_evento', array('style' => 'color : #F00')); ?>
 					</div>
 					<div class="col-sm-12 form-group">
-						<?php echo CHtml::button($texto_boton,array('class'=>'btn btn-primary', 'onclick' => 'guardarEvento()')); ?>
+						<?php echo CHtml::button($texto_boton,array('class'=>'btn btn-primary', 'onclick' => 'guardarEvento()', 'id' => 'btn_crear_evento')); ?>
 						<?php echo CHtml::label('', '',array('id' => 'evento_label_mensaje')); ?>
 					</div>
 				</div>
@@ -57,6 +57,7 @@ $this->breadcrumbs=array(
 						$('#mes').val(fecha[1]);
 						filtrarEventos();
 						$('#id_evento').val(respupesta[1]);
+						$('#btn_crear_evento').prop('disabled', true);
 					}	
 				}
 			);
