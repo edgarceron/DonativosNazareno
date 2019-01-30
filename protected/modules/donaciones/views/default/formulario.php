@@ -42,7 +42,7 @@
 			<div class="form-row">
 				<div class="form-group col-md-4">
 					<?php echo $form->labelEx($model,'id_evento',array()); ?>
-					<?php echo $form->dropDownList($model,'id_evento', $eventos, array('class'=>'form-control')); ?>
+					<?php echo $form->dropDownList($model,'id_evento', $eventos, array('class'=>'form-control', 'id' => 'id_evento')); ?>
 					<?php echo $form->error($model,'id_evento', array('style' => 'color : #F00')); ?>
 				</div>
 				
@@ -55,6 +55,20 @@
 					<?php echo CHtml::label('Mes', 'mes'); ?>
 					<?php echo CHtml::dropDownList('mes',date('m'), $meses, array('id'=>'mes', 'class'=>'form-control', 'onchange' => 'filtrarEventos()')); ?>
 				</div>	
+				
+				<div class="form-group col-md-4">
+					<?php echo CHtml::button('Crear nuevo evento',array('class'=>'btn btn-primary', 'onclick' => 'cargarFormularioEvento()')); ?>
+				</div>
+				
+				<div class="collapse col-md-12" id="formularioEvento">
+					<div class="card">
+						<div class="card-body text-secondary">
+							<div id = "evento_div">
+							
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			
 			<div class="form-row">
@@ -143,7 +157,29 @@
 </div>
 
 <script type="text/javascript">
-
+	
+	function cargarFormularioEvento(){
+		<?php echo CHtml::ajax(
+			array(
+				'type'=>'GET',
+				'dataType'=>'html',
+				'async'=>false,
+				'url' => Yii::app()->createAbsoluteUrl('/donaciones/default/eventoCargar'),
+				'update'=>'#evento_div',
+			)
+		); ?>
+		
+		var c = $('#formularioEvento').attr('class');
+		if(c == 'col-md-12 collapse'){
+			$('#formularioEvento').addClass('show');
+		}
+		else{
+			//$('#formularioEvento').removeClass('show');
+		}
+		$('#formularioEvento').collapse();
+		
+	}
+	
 	function mostrarDonante(){
 		var numdoc = $('#id_donante').val();
 		<?php echo CHtml::ajax(
@@ -252,7 +288,7 @@
 			{mes: mes, year: year}, 
 			function(r) {
 				var response = JSON.parse(r);
-				var e = document.getElementById("Donaciones_id_evento");
+				var e = document.getElementById("id_evento");
 				e.options.length = 0;
 				createOption(e, "--", "");
 				if(response.length != 0) createOptions(response, e);
