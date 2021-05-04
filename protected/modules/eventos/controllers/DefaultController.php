@@ -73,7 +73,7 @@ class DefaultController extends Controller
 		$criteria->compare('modulo', $modulo);
 		$criteria->compare('accion', $accion);
 		$permisos = PerfilContenido::model()->find($criteria);
-		if(count($permisos) == 1){
+		if(!is_null($permisos)){
 			return true;
 		}
 		return false;
@@ -158,7 +158,7 @@ class DefaultController extends Controller
 			$criteria->compare('modulo', $modulo);
 			$criteria->compare('accion', $accion);
 			$permisos = PerfilContenido::model()->find($criteria);
-			if(count($permisos) == 1)
+			if(!is_null($permisos))
 			{
 				$criteria_log = new CDbCriteria();
 				$criteria_log->compare('modulo', $modulo);
@@ -192,7 +192,7 @@ class DefaultController extends Controller
 			$criteria->compare('modulo', $modulo);
 			$criteria->compare('accion', $accion);
 			$permisos = PerfilContenido::model()->find($criteria);
-			if(count($permisos) == 1)
+			if(!is_null($permisos))
 			{
 				$criteria_log = new CDbCriteria();
 				$criteria_log->compare('modulo', $modulo);
@@ -226,7 +226,7 @@ class DefaultController extends Controller
 			$criteria->compare('modulo', $modulo);
 			$criteria->compare('accion', $accion);
 			$permisos = PerfilContenido::model()->find($criteria);
-			if(count($permisos) == 1)
+			if(!is_null($permisos))
 			{
 				$criteria_log = new CDbCriteria();
 				$criteria_log->compare('modulo', $modulo);
@@ -260,7 +260,7 @@ class DefaultController extends Controller
 			$criteria->compare('modulo', $modulo);
 			$criteria->compare('accion', $accion);
 			$permisos = PerfilContenido::model()->find($criteria);
-			if(count($permisos) == 1)
+			if(!is_null($permisos))
 			{
 				$criteria_log = new CDbCriteria();
 				$criteria_log->compare('modulo', $modulo);
@@ -294,7 +294,7 @@ class DefaultController extends Controller
 			$criteria->compare('modulo', $modulo);
 			$criteria->compare('accion', $accion);
 			$permisos = PerfilContenido::model()->find($criteria);
-			if(count($permisos) == 1)
+			if(!is_null($permisos))
 			{
 				$criteria_log = new CDbCriteria();
 				$criteria_log->compare('modulo', $modulo);
@@ -328,7 +328,7 @@ class DefaultController extends Controller
 			$criteria->compare('modulo', $modulo);
 			$criteria->compare('accion', $accion);
 			$permisos = PerfilContenido::model()->find($criteria);
-			if(count($permisos) == 1)
+			if(!is_null($permisos))
 			{
 				$criteria_log = new CDbCriteria();
 				$criteria_log->compare('modulo', $modulo);
@@ -362,7 +362,7 @@ class DefaultController extends Controller
 			$criteria->compare('modulo', $modulo);
 			$criteria->compare('accion', $accion);
 			$permisos = PerfilContenido::model()->find($criteria);
-			if(count($permisos) == 1)
+			if(!is_null($permisos))
 			{
 				$criteria_log = new CDbCriteria();
 				$criteria_log->compare('modulo', $modulo);
